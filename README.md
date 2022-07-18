@@ -1,2 +1,2 @@
 # Quantum_Project
-THUCST Topics in Quantum Computing Summer 2022 Project
+第一阶段，7 月 24 日前确定选题。
