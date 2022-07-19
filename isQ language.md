@@ -78,10 +78,13 @@ Example: 迭代相位估计 $U|u\rangle =e^{2\pi i\varphi}=e^{2\pi i(0.\varphi_1
 伪码：
 
 $$
+\begin{gathered}
 Step1: H=\dfrac{|0\rangle+|1\rangle}{\sqrt{2}}, \ ctrl \ U^{2^{m-1}} \mapsto \dfrac{1}{\sqrt{2}}(|0\rangle +e^{2\pi i|0.\varphi_m\rangle})\mapsto \varphi_m\\
 Step2:H,Ctrl\ U^{2^{m-2}}\mapsto \dfrac{1}{\sqrt{2}}(|0\rangle +e^{2\pi i|0.\varphi_{m-1}\varphi_m\rangle})\mapsto \varphi_{m-1}\\
 \cdots
+\end{gathered}
 $$
+
 isQ 代码：
 
 ```c
@@ -204,4 +207,5 @@ program.
 trapped-ion.
 5.Update the isQ document.
 
-## Q# 
+## Q# 安装
+见微软教程https://docs.microsoft.com/en-us/azure/quantum/install-command-line-qdk
