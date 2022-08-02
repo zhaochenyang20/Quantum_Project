@@ -293,7 +293,7 @@ $$
 
 $$
 \begin{aligned}|\psi\rangle^{\otimes 2} &=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)=\frac{1}{2}(|00\rangle+|01\rangle+|10\rangle+|11\rangle)\\
-|\psi\rangle^{\otimes 3} &=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\\ &=\frac{1}{2 \sqrt{2}}(|000\rangle+|001\rangle+|010\rangle+|011\rangle+|100\rangle+|101\rangle+|110\rangle+|111\rangle)
+|\psi\rangle^{\otimes 3} &=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\\ &=\frac{\sqrt{2}}{4}(|000\rangle+|001\rangle+|010\rangle+|011\rangle+|100\rangle+|101\rangle+|110\rangle+|111\rangle)
 \end{aligned}
 $$
 
@@ -464,3 +464,226 @@ $$
 
 ### $2.39$
 
+$(1)$ 分别验证对第二个参数线性、交换共轭、自身正定性：
+$$
+\begin{aligned}
+(i)\ &\left(A, \sum_{i} \lambda_{i} B_{i}\right) =\operatorname{Tr}\left[A^{\dagger}\left(\sum_{i} \lambda_{i} B_{i}\right)\right] =\sum_{j}\langle j|A^{\dagger}\left(\sum_{i} \lambda_{i} B_{i}\right)|j\rangle\\
+&\quad=\sum_{i}\lambda_{i} \sum_{j}\langle j|A^{\dagger} B_{i}|j\rangle
+=\sum_{i} \lambda_{i} \operatorname{Tr}\left(A^{\dagger} B_{i}\right)\\
+(ii)\ & (A,B)^*=\left(\sum _{j}\langle j|A^{\dagger}B|j\rangle\right)^*=\left(\sum _{j}\langle j|A^{\dagger}B|j\rangle\right)^{\dagger}=\sum _{j}\langle j|B^{\dagger}A|j\rangle=(B,A)\\
+(iii)\ &(A, A) =\operatorname{tr}\left(A^{\dagger} A\right) =\sum_{j}\langle j|A^{\dagger}A|j\rangle\geq 0,(A,A)=0\Longleftrightarrow \forall \ |j\rangle,A|j\rangle=0,A=O
+\end{aligned}
+$$
+
+$(2)$ $V\longmapsto V$ 中所有算子都可以用矩阵表示，维数为 $d\times d$，即 $ \dim(L_V)=d^2$
+
+$(3)$ 对所有算子 $A$ 的标准正交基为 $A_{ij}=|v_i⟩⟨v_j|$，$|v_i⟩$ 为标准正交基
+
+由于对所有厄米算子 $B$ 都可表为 $\dfrac{A+A^{\dagger}}{2}$，则构造正交基 
+$$
+A_{ij}=\dfrac{A_{ij}+A_{ij}^†}{2}=\dfrac{|v_i⟩⟨v_j|+|v_j⟩⟨v_i|}{2}
+$$
+对 $i=j$ 时为实数，$i\neq j$ 时可为虚数，两项相差负号，共 $d+2\cdot \dfrac{d(d-1)}{2}=d^2$ 项 
+
+### $2.40$
+
+$$
+\begin{aligned}
+&{[X, Y]=X Y-Y X=\left[\begin{array}{cc}
+0 & 1 \\
+1 & 0
+\end{array}\right]\left[\begin{array}{cc}
+0 & -i \\
+i & 0
+\end{array}\right]-\left[\begin{array}{cc}
+0 & -i \\
+i & 0
+\end{array}\right]\left[\begin{array}{cc}
+0 & 1 \\
+1 & 0
+\end{array}\right]=\left[\begin{array}{cc}
+2 i & 0 \\
+0 & -2 i
+\end{array}\right]=2 i Z} \\
+&{[Y, Z]=\left[\begin{array}{cc}
+0 & -i \\
+i & 0
+\end{array}\right]\left[\begin{array}{cc}
+1 & 0 \\
+0 & -1
+\end{array}\right]-\left[\begin{array}{cc}
+1 & 0 \\
+0 & -1
+\end{array}\right]\left[\begin{array}{cc}
+0 & -i \\
+i & 0
+\end{array}\right]=\left[\begin{array}{cc}
+0 & 2 i \\
+2 i & 0
+\end{array}\right]=2 i X} \\
+&{[Z, X]=\left[\begin{array}{cc}
+1 & 0 \\
+0 & -1
+\end{array}\right]\left[\begin{array}{ll}
+0 & 1 \\
+1 & 0
+\end{array}\right]-\left[\begin{array}{cc}
+0 & 1 \\
+1 & 0
+\end{array}\right]\left[\begin{array}{cc}
+1 & 0 \\
+0 & -1
+\end{array}\right]=2 i\left[\begin{array}{cc}
+0 & -i \\
+i & 0
+\end{array}\right]=2 i Y}
+\end{aligned}
+$$
+
+可简写为 $[\sigma_j,\sigma_k]=2i\displaystyle \sum_{l=1}^3\epsilon_{jkl}\sigma_l$ 
+
+### $2.41$
+
+$$
+\left\{\sigma_{1}, \sigma_{2}\right\}=\left\{\sigma_{2}, \sigma_{3}\right\}=\left\{\sigma_{3}, \sigma_{1}\right\}=0,\sigma_{0}^{2}=\sigma_{1}^{2}=\sigma_{2}^{2}=\sigma_{3}^{2}=I
+$$
+
+### $2.42$
+
+$$
+\frac{[A, B]+\{A, B\}}{2}=\frac{A B-B A+A B+B A}{2}=A B
+$$
+
+### $2.43$
+
+结合 $2.40-2.41$ 的计算结果可得
+$$
+\begin{aligned}
+\sigma_{j} \sigma_{k} &=\frac{\left[\sigma_{j}, \sigma_{k}\right]+\left\{\sigma_{j}, \sigma_{k}\right\}}{2} =\frac{2 i \sum_{l=1}^{3} \epsilon_{j k l} \sigma_{l}+2 \delta_{j k} I}{2} =\delta_{j k} I+i \sum_{l=1}^{3} \epsilon_{j k l} \sigma_{l}
+\end{aligned}
+$$
+
+### $2.44$
+
+$$
+[A, B]=0,\{A, B\}=0 \Longrightarrow  A B=0,A^{-1}AB=0=B
+$$
+
+### $2.45$
+
+$$
+\begin{aligned}
+{[A, B]^{\dagger} } &=(A B-B A)^{\dagger} =B^{\dagger} A^{\dagger}-A^{\dagger} B^{\dagger} =\left[B^{\dagger}, A^{\dagger}\right]
+\end{aligned}
+$$
+
+### $2.46$
+
+$$
+\begin{aligned}
+{[A, B] } &=A B-B A =-(B A-A B) =-[B, A]
+\end{aligned}
+$$
+
+### $2.47$
+
+$$
+(i(BA-AB))^{\dagger}=-iA^{\dagger}B^{\dagger}+iB^{\dagger}A^{\dagger}=i(BA-AB)
+$$
+
+### $2.48$
+
+$$
+P=UDU^{\dagger}(\lambda_i\geq 0),U=UII,H=U_1\sqrt{H^2},\sqrt{H^2}=U_2DU_2^{\dagger},H=U_1U_2DU_2^{\dagger}
+$$
+
+### $2.49$
+
+$$
+A=\sum_{i} \lambda_{i}|i\rangle\langle i|,\sqrt{A^{\dagger}A}=\sqrt{\sum_{i}|i\rangle\langle i|\lambda_i^*\sum_{j} \lambda_{j}|j\rangle\langle j|}=\sqrt{\sum _{i}\|\lambda_i\|^2|i\rangle\langle i|}=\sum _{i}\|\lambda_i\||i\rangle\langle i|
+$$
+
+构造标准正交基 $|e_i\rangle$，对 $\lambda\neq 0$ 的所有 $\lambda_i$ 取为 $\dfrac{\lambda_i|i\rangle}{\|\lambda_i\|}$，满足正交性，对 $\lambda=0$ 扩充至全空间
+
+令 $U=\displaystyle \sum_{i}|e_i\rangle\langle i|$，故 $A=U\sqrt{A^{\dagger}A}=\displaystyle \sum_{i}\dfrac{\lambda_i}{\|\lambda_i\|}\|\lambda_i\||e_i\rangle\langle i|=A$
+
+### $2.50$
+
+$$
+A=\left[\begin{array}{ll}
+1 & 0 \\
+1 & 1
+\end{array}\right] , A^{\dagger} A=\left[\begin{array}{ll}
+2 & 1 \\
+1 & 1
+\end{array}\right]
+$$
+
+而对 $\left[\begin{array}{ll}
+2 & 1 \\
+1 & 1
+\end{array}\right]$ 计算特征值为 $\lambda_{1,2}=\dfrac{3\pm \sqrt{5}}{2}=\left(\dfrac{\sqrt{5}\pm 1}{2}\right)^2$ ，对应特征向量为
+$$
+|\lambda=\dfrac{3+\sqrt{5}}{2}\rangle=\frac{1}{\sqrt{10-2 \sqrt{5}}}\left[\begin{array}{c}
+2 \\
+-1+\sqrt{5}
+\end{array}\right],
+|\lambda=\dfrac{3-\sqrt{5}}{2}\rangle=\frac{1}{\sqrt{10+2 \sqrt{5}}}\left[\begin{array}{c}
+2 \\
+-1-\sqrt{5}
+\end{array}\right]
+$$
+
+$$
+J=\sqrt{A^{\dagger} A}=\sqrt{\lambda_{+}}| \lambda_{+}\rangle\left\langle\lambda_{+}\right|+\sqrt{\lambda_{-}}|\lambda_{-}\rangle\langle\lambda_{-}|
+\\=\dfrac{\sqrt{5}+1}{2(10-2\sqrt{5})}\left[\begin{array}{c}
+2 \\
+-1+\sqrt{5}
+\end{array}\right]\left[\begin{array}{c}
+2 &
+-1+\sqrt{5}
+\end{array}\right]+\dfrac{\sqrt{5}-1}{2(10+2\sqrt{5})}\left[\begin{array}{c}
+2 \\
+-1-\sqrt{5}
+\end{array}\right]\left[\begin{array}{c}
+2 &
+-1-\sqrt{5}
+\end{array}\right]\\
+=\dfrac{1}{\sqrt{5}}\left[\begin{array}{ll}
+3 & 1 \\
+1 & 2
+\end{array}\right]
+$$
+
+从而 $J^{-1}=\frac{1}{\sqrt{5}}\left[\begin{array}{cc}
+2 & -1 \\
+-1 & 3
+\end{array}\right]$，计算 $U=AJ^{-1}=\frac{1}{\sqrt{5}}\left[\begin{array}{cc}
+2& -1 \\
+1 & 2
+\end{array}\right]$，则左极式分解为
+$$
+A=U\sqrt{A^{\dagger}A}=\frac{1}{\sqrt{5}}\left[\begin{array}{cc}
+2 & -1 \\
+1 & 2
+\end{array}\right]\sqrt{A^{\dagger}A},\sqrt{A^{\dagger}A}=\dfrac{1}{\sqrt{5}}\left[\begin{array}{ll}
+3 & 1 \\
+1 & 2
+\end{array}\right]
+$$
+ 而 $AA^{\dagger}=\left[\begin{array}{ll}
+1 & 1 \\
+1 & 2
+\end{array}\right]$，同样经过繁杂计算后得到 $\sqrt{AA^{\dagger}}=\dfrac{1}{\sqrt{5}}\left[\begin{array}{ll}
+2 & 1 \\
+1 & 3
+\end{array}\right]$，则右极式分解为
+$$
+A=\sqrt{AA^{\dagger}}U=\sqrt{AA^{\dagger}}\frac{1}{\sqrt{5}}\left[\begin{array}{cc}
+2 & -1 \\
+1 & 2
+\end{array}\right],\sqrt{A^{\dagger}A}=\dfrac{1}{\sqrt{5}}\left[\begin{array}{ll}
+2 & 1 \\
+1 & 3
+\end{array}\right]
+$$
