@@ -13,12 +13,12 @@
 
 
 - **Subsystem code**
-  - D. Bacon, Operator quantum error-correcting subsystems for selfcorrecting quantum memories, Phys. Rev. A 73, 012340 (2006)
+  - D. Bacon, Operator quantum error-correcting subsystems for self-correcting quantum memories, Phys. Rev. A 73, 012340 (2006)
   - P. Aliferis and A. W. Cross, Subsystem Fault Tolerance with the BaconShor Code, Phys. Rev. Lett. 98, 220502 (2007)
   - J. Napp and J. Preskill, Optimal Bacon-Shor codes, Quantum Info. Comput. 13, 490 (2013)
 
 
-- **Code switching**
+- **Code-switching**
   - J. T. Anderson, G. Duclos-Cianci, and D. Poulin, Fault-Tolerant Conversion between the Steane and Reed-Muller Quantum Codes, Phys. Rev. Lett. 113, 080501 (2014)
   - C. D. Hill, et al., Fault-tolerant quantum error correction code conversion, Quantum Inf. Comput. 13, 439451 (2013)
   - H. P. Nautrup, N. Friis, and H. J. Briegel, Fault-tolerant interface between quantum memories and quantum processors. Nat Commun 8, 1321 (2017).
