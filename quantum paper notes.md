@@ -14,25 +14,133 @@ graph LR
 
 **是什么使量子信息处理成为可能？是什么分离了量子世界与经典世界？量子计算中正在利用哪些经典世界中无法获得的资源？**
 
-## subsystem code papers outline
+<img src="https://pic.imgdb.cn/item/62ea88c016f2c2beb18c567a.jpg" style="zoom:30%;" />
 
-> **Bacon-Shor code:** A Bacon-Shor code is a subsystem quantum error-correcting code on an $L \times L$ lattice where the $2(L-1)$ weight-2L stabilizers are usually inferred from the measurements of $(L-1)^2$ weight-2 gauge operators.
+## subsystem code papers outline
 
 ### Operator quantum error-correcting subsystems for self-correcting quantum memories(2006)
 
 编码量子信息重点：如何将信息编码至量子系统的子空间
 
+**算子量子纠错**，更一般，但没有产生新的纠错编码，但提供量子纠错程序以及阈值的可能性
+
+本文设计 $[n^2,1,n]$ 以及  $[n^3,1,n]$ 编码（使用 $n^2(n^3)$ 编码一个量子比特，编码距离为 $n$ ） 
+
+特定自纠错量子存储器(selfcorrecting quantum memory)
+
+将一量子比特编码到两个量子比特：
+
+|                          子空间编码                          |                          子系统编码                          |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| $\alpha|0\rangle+\beta |1\rangle\longrightarrow \alpha\dfrac{|01\rangle-|10\rangle}{\sqrt{2}}+\beta|11\rangle$ | $\alpha|0\rangle+\beta |1\rangle\longrightarrow \forall \ |\psi\rangle,|\psi\rangle\otimes (\alpha|0\rangle+\beta |1\rangle) $ |
+
+$$
+\begin{gathered}
+H_{\text {int }}=\sum_{\alpha}\left[\left(I_{d} \oplus D_{\alpha}\right) \oplus E_{\alpha}\right] \oplus B_{\alpha}
+\\\quad\quad\quad\quad\quad\quad\ \begin{array}{llll}\Large\downarrow & \Large\downarrow & \quad\Large\downarrow\quad& \Large\downarrow \\\mathcal{C} \quad& \mathcal{D} & \quad\mathcal{E} & \mathcal{H}_{E}\end{array}
+\end{gathered}
+$$
+
+不关心对 $\mathcal{D}$ 的作用，只关心子系统 $\mathcal{C}$ 的情况，令 $|i\rangle \otimes|k\rangle$ 为 $\mathcal{C}\otimes\mathcal{D}$ 的基，量子纠错理论改版：
+
+| 经典量子纠错                                                 | 子系统量子纠错                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| $\langle i |E_{a}^{\dagger} E_{b}| j \rangle=\delta_{i, j} c_{a, b}$ | $\langle i|\otimes\langle k|) E_{a}^{\dagger} E_{b}(|j\rangle \otimes|l\rangle)=\delta_{i, j} m_{a, b, k, l}$ |
+
+子系统纠错不提供新的编码，但给出不同的错误恢复方式（不需要修复其他空间的错误）
+
+**二维晶格算子量子纠错**，构造二维晶格上的算子集合 $\mathcal{T},\mathcal{S},\mathcal{L}$，构建 $[n^2,1,n]$ 编码
+
+将二维坐标一一映射到泡利算符
+$$
+P(a, b)=\prod_{i, j=1}^{n} X_{i, j}^{a_{i, j}} Z_{i, j}^{b_{i, j}}=\prod_{i, j=1}^{n} \begin{cases}X_{i, j} & \text { if } a_{i, j}=1 \text { and } b_{i, j}=0 \\ Z_{i, j} & \text { if } a_{i, j}=0 \text { and } b_{i, j}=1 \\ -i Y_{i, j} & \text { if } a_{i, j}=1 \text { and } b_{i, j}=1\end{cases}
+$$
+
+
+二维晶格上的三种群
+
+$$
+\begin{cases}
+\mathcal{T}=\left\{(-1)^{\phi} P(a, b) \mid \phi \in \mathbb{Z}_{2}, \displaystyle \scriptsize \bigoplus_{i=1}^{n}\normalsize  a_{i, j}=0,\displaystyle \scriptsize \bigoplus_{j=1}^{n} \normalsize b_{i, j}=0\right\},\left\langle X_{i, j} X_{i+1, j}, Z_{j, i} Z_{j, i+1}\right\rangle\\
+\mathcal{S}=\left\{P(a,b)|\displaystyle \scriptsize \bigoplus_{i=1}^{n}\normalsize \left(\displaystyle \scriptsize \bigwedge_{j=1}^{n}\normalsize a_{i,j}\right)=0,\displaystyle \scriptsize \bigoplus_{i=1}^{n}\normalsize \left(\displaystyle \scriptsize \bigwedge_{j=1}^{n}\normalsize b_{i,j}\right)=0\right\},
+\displaystyle \left\langle\prod_{i=1}^{n} X_{j, i} X_{j+1, i}, \prod_{i=1}^{n} Z_{i, j} Z_{i, j+1}\right\rangle\\
+\mathcal{L}=\left\{(-1)^{\phi} P(a, b) \mid \phi \in \mathbb{Z}_{2}, \displaystyle \scriptsize \bigoplus_{i=1}^{n}\normalsize \left(\displaystyle \scriptsize \bigwedge_{j=1}^{n}\normalsize a_{i,j}\right)=1, \displaystyle \scriptsize \bigoplus_{i=1}^{n}\normalsize \left(\displaystyle \scriptsize \bigwedge_{j=1}^{n}\normalsize b_{i,j}\right)=1\right\}
+\end{cases}
+$$
+
+<img src="https://pic.imgdb.cn/item/62ef28c516f2c2beb127ba3a.jpg" style="zoom:25%;" />
+
+分解 $(\mathbb{C}^2)^{2^{n}}$ 希尔伯特空间 $\mathcal{H}=\underset{s^{X}, s^{Z}}{\oplus} \mathcal{H}_{s^{X}, s^{Z}}=\underset{s^{X}, s^{Z}}{\oplus} \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{T}} \otimes \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{L}}$，$\mathcal{D}$ 为前者
+
+对所有 $P(a,b)$ 泡利错误，无错误时 $\in \mathcal{T}$，由此错误 $\in \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{T}}$，对 $ \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{L}}$ 无影响，无噪声系统
+
+对有噪声系统....
+
+一些想法：**正方形晶格可不可以换成六边形晶格**？
+
+Open questions:
+
++ 光学晶格和超冷原子物理实现以及在两个这样的编码格之间产生有效的受控NOT耦合
++ 三维量子系统是否实现自我纠错？符号问题 $\longrightarrow $ 量子蒙特卡洛模拟，密度矩阵重整化组。
++ 在二维系统中如何设计自我纠错量子系统
++ 算子量子纠错子系统在量子信息科学的作用，设计其余子系统，能否突破量子汉明码边界
+
 ### Subsystem Fault Tolerance with the Bacon-Shor Code(2007)
 
-**摘要**：估计子系统在 Bacon-Shor 编码中的有效应用。FTEC 不需要纠缠附属态，实现最近两比特测量，找到对抗随机噪声下更低的量子准确极限 $1.94\times 10^{-4}$ 。
+**摘要**：基于**子系统编码**在 Bacon-Shor 编码中的有效应用。FTEC 不需要纠缠附属态，实现最近两比特测量，找到**对抗随机噪声**下更低的量子准确极限 $1.94\times 10^{-4}$ 。
 
-
+各种编码的性能，$\mbox{CNOT}$ 个数，理论下界，蒙特卡洛数值计算，吻合度高
+$$
+\begin{equation}
+\begin{array}{llrcr}
+\hline \hline {\text { Code }} & \text { FTEC } & \text { locs. } & \varepsilon_{0}\left(\times 10^{-4}\right) & \varepsilon_{0}^{\mathrm{MC}}\left(\times 10^{-4}\right) \\
+\hline \text { Steane }[[7,1,3]] & \text { Steane } & 575 & 0.27 & \\
+\mathcal{C}_{\mathrm{BS}}^{(3)}[[9,1,3]] & \text { Steane } & 297 & 1.21 & 1.21 \pm 0.06 \\
+& \text { Knill } & 297 & 1.26 & 1.26 \pm 0.05 \\
+\mathcal{C}_{\mathrm{BS}}^{(5)}[[25,1,5]] & \text { Steane } & 1185 & 1.94 & 1.92 \pm 0.02 \\
+& \text { Knill } & 1185 & & 2.07 \pm 0.03 \\
+\text { Golay }[[23,1,7]] & \text { Steane } & 7551 & & \approx 1 \\
+\mathcal{C}_{\mathrm{BS}}^{(7)}[[49,1,7]] & \text { Steane } & 2681 & & 1.74 \pm 0.01 \\
+& \text { Knill } & 2681 & & 1.91 \pm 0.01 \\
+\hline \hline
+\end{array}
+\end{equation}
+$$
 
 ### Optimal Bacon-shor codes(2012)
 
-经典错误概率如何影响比特翻转概率 $p_{X}$、相位翻转概率 $p_{Z}$。
+> **Bacon-Shor code:** A Bacon-Shor code is a subsystem quantum error-correcting code on an $L \times L$ lattice where the $2(L-1)$ weight-2L stabilizers are usually inferred from the measurements of $(L-1)^2$ weight-2 gauge operators.
+
+Bacon-Shor 编码将翻转比特和相位翻转比特结合在一起
+
+比特翻转概率 $p_{X}$、相位翻转概率 $p_{Z}$，按照**非随机噪声**是否有偏向，推导对应失败概率
+
+$$
+p_X=p_Z,BSFail (p)=\left(\frac{2}{\pi \ln 2}\right)^{1 / 2} \exp \left(\frac{\ln ^{2} 2}{8}\right) p^{1 / 2} \exp \left(-\frac{\ln ^{2} 2}{8 p}+O(p)\right)\\
+p_X\ll p_Z,\ln \left[B S Fail\left(p_{Z}, b\right)\right]=-A(b) / p_{Z}-(0.5) \ln \left(1 / p_{Z}\right)+C(b)+O\left(p_{Z}\right.\  polylog \left.(b)\right)
+\\
+A(b)=\frac{1}{8}(W(\sqrt{b}))^{2}+O\left(b^{-1 / 2} \ln b\right)\\
+W(\sqrt{b})=\ln \sqrt{b}-\ln \ln \sqrt{b}+\frac{\ln \ln \sqrt{b}}{\ln \sqrt{b}}+O\left(\frac{\ln \ln \sqrt{b}}{\ln ^{2} \sqrt{b}}\right)
+$$
+与当今经典计算机容错率 $10^{-17}$ 的对比，仅需要保证 $p_{Z}/p_{X}\approx 0.02$
 
 
+
+
+
+### BCH线性编码
+
+(63,51) BCH 码的生成多项式为: 
+$$
+G(x)=1+x^{2}+x^{4}+x^{7}+x^{8}+x^{9}+x^{12}\Longleftrightarrow (1010100111001)*2=(5433)*{10}
+$$
+利用系统码编码方程进行编码 
+$$
+\large \mbox{C}(x)=x^{n-k}\cdot {m}(x)+\mathrm{Rem} *{G(x)}\left[x^{n-k} \cdot m(x)\right]
+$$
+其中 $\operatorname{Rem}$ 表示在 $F_{p}[n](p=2, n=12)$ 伽罗瓦域上模 $G(x)$ 求同余
+
+# 量子信息与量子计算习题（鲁睿）
 
 ## Chapter 1
 
@@ -687,3 +795,6 @@ A=\sqrt{AA^{\dagger}}U=\sqrt{AA^{\dagger}}\frac{1}{\sqrt{5}}\left[\begin{array}{
 1 & 3
 \end{array}\right]
 $$
+
+
+
