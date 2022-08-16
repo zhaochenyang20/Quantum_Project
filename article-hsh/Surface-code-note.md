@@ -4,17 +4,17 @@
 
 ## 1. 简介
 
-Surface code 是一种量子纠错码，属于stabilizer code 的一种，它的实现利用了平面的拓扑结构，具有很好的局部性，并且对于Pauli error （由 $X$, $Y$ 算子生成）具有优秀、简明的纠错策略。和大多数的stabilizer code 一样，surface code 可以方便地定义 $X_L, Z_L$ 算子，也很容易初始化为这些算子的特征态$|0 \rangle, |+\rangle$。此外，通过对编码多个logic qubit的surface code进行一定的变换，则可以让我们定义 $CNOT$ gate。
+Surface code 是一种量子纠错码，属于 stabilizer code 的一种，它的实现利用了平面的拓扑结构，具有很好的局部性，并且对于 Pauli error （由 $X$, $Y$ 算子生成）具有优秀、简明的纠错策略。和大多数的 stabilizer code 一样，surface code 可以方便地定义 $X_L, Z_L$ 算子，也很容易初始化为这些算子的特征态 $|0 \rangle, |+\rangle$。此外，通过对编码多个 logic qubit 的 surface code 进行一定的变换，则可以让我们定义 $CNOT$ gate。
 
 
 
 ## 2. 背景
 
-这里我们主要考虑Pauli error，每个qubit都有可能经历随机的 $X, Z, Y(=ZX)$的变换，可以表达为operator sum的形式，如果初始时系统状态用density operator $\rho$ 表示，则错误的作用为：
+这里我们主要考虑 Pauli error，每个 qubit 都有可能经历随机的 $X, Z, Y(=ZX)$ 的变换，可以表达为 operator sum 的形式，如果初始时系统状态用 density operator $\rho$ 表示，则错误的作用为：
 $$
 \varepsilon(\rho) = p_1 \rho + p_2 X\rho X + p_3 Y\rho Y + p_4 Z\rho Z
 $$
-而所谓纠错，就是要找到一个作用$C$（也可以表示为operator sum的形式），使得对于这种错误，有:
+而所谓纠错，就是要找到一个作用 $C$（也可以表示为 operator sum 的形式），使得对于这种错误，有:
 $$
 C(\varepsilon(\rho)) = \rho
 $$
@@ -22,29 +22,29 @@ $$
 $$
 \varepsilon(\rho) = \sum_i p_i E_i \rho E_i^T, p_i \geq 0
 $$
-只需要该作用可以保持矩阵的trace和正定性。我们把 $E:=\{E_i\}$ 称为错误类型，若某种纠错作用$C$可以对 $E$ 纠错，可以证明，对于$E$中元素的线性组合也可以纠错。
+只需要该作用可以保持矩阵的 trace 和正定性。我们把 $E:=\{E_i\}$ 称为错误类型，若某种纠错作用 $C$ 可以对 $E$ 纠错，可以证明，对于 $E$ 中元素的线性组合也可以纠错。
 
-假设量子系统由多个qubit组成，其空间表示为 $H$，则元素 $\{\pm 1(i) I_j, \pm 1(i) X_j, \pm 1(i) Z_j\}$ 生成了$H$ 上的observable 的一个有限群（称为Pauli群）$P$。对于 $C$ 是 $P$ 的一个子集，我们称 $C$ stabilize $|\phi\rangle$ 若对于 $C$ 中任意元素 $c$ ，都有 $c |\phi\rangle = |\phi\rangle$，可以证明：
+假设量子系统由多个 qubit 组成，其空间表示为 $H$，则元素 $\{\pm 1(i) I_j, \pm 1(i) X_j, \pm 1(i) Z_j\}$ 生成了$H$ 上的 observable 的一个有限群（称为 Pauli 群）$P$。对于 $C$ 是 $P$ 的一个子集，我们称 $C$ stabilize $|\phi\rangle$ 若对于 $C$ 中任意元素 $c$ ，都有 $c |\phi\rangle = |\phi\rangle$，可以证明：
 
 1.  若 $C$ stabilize $|\phi\rangle$ ，则 $C$ 生成的子群也是如此，因此接下来我们可以假设 $C$ 是一个群；
 2. 被 $C$ stabilize 的元素组成 $H$ 的一个子空间，记做 $V_C$；
 3. 若 $dim H = h$，$C$ 不含 $-I$，且它的最小生成元集合大小为 $k$，则 $dim V_C = h - k$。
 
-若 $C$ 的最小生成元集合是 $G_C$，并且我们可以让它们都是互相可交换的，这样我们在这些observable上可以同时进行测量，并要求测量结果为 $+1$，这样我们就得到了一个子空间，可以用于编码 $h - k$ 个logic qubit。我们可以在上面定义$X_{L, j}, Z_{L, j}$，只需要它们满足这样的性质即可：即不同位置上的算子可交换；$X_{L,j}^2 = I, Z_{L,j}^2 = I$；同一位置的不同算子反交换；这些operator可以被限制在 $V_C$ 上。
+若 $C$ 的最小生成元集合是 $G_C$，并且我们可以让它们都是互相可交换的，这样我们在这些 observable 上可以同时进行测量，并要求测量结果为 $+1$，这样我们就得到了一个子空间，可以用于编码 $h - k$ 个 logic qubit。我们可以在上面定义 $X_{L, j}, Z_{L, j}$，只需要它们满足这样的性质即可：即不同位置上的算子可交换；$X_{L,j}^2 = I, Z_{L,j}^2 = I$；同一位置的不同算子反交换；这些 operator 可以被限制在 $V_C$ 上。
 
-事实上，在这些observable上进行测量，我们可以得到一个诊断结果（每个位置上的测量结果），如果这个结果和上一个结果相比改变了，则我们可以推断有错误发生，若错误发生的概率很低，我们可以用算法计算出最有可能发生的错误，然后进行纠错。确实有错误可以保持测量结果不变，我们发现这些错误恰好是我们刚刚定义的逻辑算子，这样的错误是难以发现的，因为我们把这种错误所改变的qubit的最小数量称为是这个stabilizer code的距离 $d$。
+事实上，在这些 observable 上进行测量，我们可以得到一个诊断结果（每个位置上的测量结果），如果这个结果和上一个结果相比改变了，则我们可以推断有错误发生，若错误发生的概率很低，我们可以用算法计算出最有可能发生的错误，然后进行纠错。确实有错误可以保持测量结果不变，我们发现这些错误恰好是我们刚刚定义的逻辑算子，这样的错误是难以发现的，因为我们把这种错误所改变的 qubit 的最小数量称为是这个 stabilizer code 的距离 $d$。
 
 
 
 ## 3. Surface code
 
-Surface code 的构造如下图所示，其中白色圆点表示data qubit，黑色圆点表示measure qubit，measure qubit又分为两种，用 $X$ 和 $Z$ 表示，它们与周围的 4 个 data qubit 连接（在边界处的是 3 个）
+Surface code 的构造如下图所示，其中白色圆点表示 data qubit，黑色圆点表示 measure qubit，measure qubit 又分为两种，用 $X$ 和 $Z$ 表示，它们与周围的 4 个 data qubit 连接（在边界处的是 3 个）
 
 ![image-20220809102025756](.\pic\surface-code.png)
 
-可以看到这两种连接分别表示在 $Z_a Z_b Z_c Z_d$ 和 $X_a X_b X_c X_d$ 这两个observable上进行测量，这些observable正是surface code所对应的 $C$ 的生成元，我们可以验证按照上图的排布，这些observable都是可交换的。
+可以看到这两种连接分别表示在 $Z_a Z_b Z_c Z_d$ 和 $X_a X_b X_c X_d$ 这两个 observable 上进行测量，这些 observable 正是 surface code 所对应的 $C$ 的生成元，我们可以验证按照上图的排布，这些 observable 都是可交换的。
 
-我们把在上述测量操作中保持不变的状态称之为静止态（仅针对data qubit，measure qubit的存在只是辅助我们进行测量），对于 $2^k$ 个不同的测量结果，静止态可能生活在其中任何一个测量结果所定义的子空间中。具体来说，假设某个measure qubit执行测量$Z_a Z_b Z_c Z_d$ ，得到结果$Z_{abcd}$，则我们可以令 $Z_{abcd}\cdot Z_a Z_b Z_c Z_d\in C$，对每个位置的测量结果都如此做后，可以得到对应的 $V_C$，所谓静止态就生活在 $V_C$ 中。一般来说，我们不会事先规定这些observable的符号，而是在经过多轮测量得到稳定的结果后才规定符号，然后得到对应的stabilizer code。在进行量子计算时，我们也一般从一个静止态出发，此后在每一轮测量中，如果没有错误发生，测量结果始终和上一轮一样。
+我们把在上述测量操作中保持不变的状态称之为静止态（仅针对 data qubit，measure qubit 的存在只是辅助我们进行测量），对于 $2^k$ 个不同的测量结果，静止态可能生活在其中任何一个测量结果所定义的子空间中。具体来说，假设某个 measure qubit 执行测量 $Z_a Z_b Z_c Z_d$ ，得到结果 $Z_{abcd}$，则我们可以令 $Z_{abcd}\cdot Z_a Z_b Z_c Z_d\in C$，对每个位置的测量结果都如此做后，可以得到对应的 $V_C$，所谓静止态就生活在 $V_C$ 中。一般来说，我们不会事先规定这些 observable 的符号，而是在经过多轮测量得到稳定的结果后才规定符号，然后得到对应的 stabilizer code。在进行量子计算时，我们也一般从一个静止态出发，此后在每一轮测量中，如果没有错误发生，测量结果始终和上一轮一样。
 
 
 
