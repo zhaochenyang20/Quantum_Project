@@ -23,3 +23,6 @@
   - C. D. Hill, et al., Fault-tolerant quantum error correction code conversion, Quantum Inf. Comput. 13, 439451 (2013)
   - H. P. Nautrup, N. Friis, and H. J. Briegel, Fault-tolerant interface between quantum memories and quantum processors. Nat Commun 8, 1321 (2017).
 
+## 备注
+
+尝试过整理 `article-hsh` 路径下的 note，然而中英文之间没有空格的地方比较多（客观上内容太丰富了，所以很能理解，真是不容易），所以之后我考虑写个脚本来处理。
