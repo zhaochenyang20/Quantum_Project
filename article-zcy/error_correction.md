@@ -150,3 +150,47 @@ $$
 
 概括起来，通过上例，我们已经认识到，有可能使量子差错离散化；为对抗单量子比特上可能的连续差错，只要贏得对有限差错集即四个 Pauli 矩阵的成功纠错即可。类似结果对于高维量子系统同样成立，这反映了与经典模拟系统的纠错理论的显著差异。这类系统中的纠错是非常不同的，因为原理上存在有无穷数目的不同差错症状，经典信息处理的数字纠错要成功得多，因为它只包含有限数目的差错症状。相比于与经典模拟纠错，量子纠错看起来与经典数字纠错类似得多。
 
+## 独立差错模型
+
+这一节中将利用不同量子比特上差错独立的假设以解释如何同时确保量子纠错理论和可靠量子信息处理。直观上，如果噪声过程独立地作用于码中的不同量 子比特上，那么在规定噪声足够弱的情况下，与非编码状态相比，纠错应当更能改善编码状态的存储保真度。为说明这一点，我们以退极化信道的例子作为开始，它会为基本思想提供一个特别简单的实证，随后再扩展这种思想来包括其他 的重要信道。
+
+退极化信道可以由一个单参数即概率 $p$ 来描述。单量子比特上退极化信道的作用可由方程 $\varepsilon(\rho)=(1-p) \rho+(p / 3)[X \rho X+Y \rho Y+Z \rho Z]$ 来定义，并可以被解释如下概念——量子比特什么都没有发生的概率为 $1-p$，算子 $X, Y$ 和 $Z$ 中的每一个作用于量子比特的概率为 $p / 3$。退极化信道特别易于在量子纠错的背景下进行分析，因为它具有根据四个基本差错 $I, X, Y$ 和 $Z$ 来表述的一个方便的解释，而这些基本差错已被最为广泛地应用于量子码的分析中。我们将会来解释这种分析是如何进行的，然后再回到如下问题：当我们考虑一个没有由 $I, X, Y$ 和 $Z$ 运算 简单解释的过程时，情况会怎样。简单的计算显示，对通过退极化信道发送的状态，最小保真度给出为 $F=\sqrt{1-2 p / 3}=1-p / 3+O\left(p^{2}\right)$。
+
+设我们用能纠正任何单量子比特上差错的一个 $n$ 量子比特量子码来对一个单 量子比特信息编码。设具有参数 $p$ 的退极化信道独立地作用于这个量子比特中的 每一个，则在所有 $n$ 个量子比特上所引起的联合作用为：
+$$
+\varepsilon^{\otimes n}(\rho)=(1-p)^{n} \rho+\sum_{j=1}^{n} \sum_{k=1}^{3}(1-p)^{n-1} \frac{p}{3} \sigma_{k}^{j} \rho \sigma_{k}^{j}+\cdots
+$$
+其中$\cdots$表示均为正且在分析时将丢弃的高阶项。纠错执行以后,只要 $\rho$ 原来处于码中,出现在这个和式中的所有项将会被回复到状态 $\rho$ :
+$$
+\left(\mathscr{R} \otimes \varepsilon^{\otimes n}\right)(\rho)=\left[(1-p)^{n}+n(1-p)^{n-1} p\right] \rho+\cdots
+$$
+所以保真度满足：
+$$
+F \geqslant \sqrt{(1-p)^{n-1}(1-p+n p)}=1-\frac{\left(\begin{array}{l}
+n \\
+2
+\end{array}\right)}{2} p^{2}+O\left(p^{3}\right) \quad(10.45)
+$$
+因此在规定差错的概率 $p$ 为充分小后，采用量子纠错码会改善被这个码所保护的量子状态保真度。
+
+并非所有噪声污染的信道都可如此容易地解释为由无差错、比特翻转、相位翻 转及其两两组合的一个随机组合。许多自然出现的量子信道都不具备这样的解释。
+
+用 $E_{j, k}$ 表示 $E_{j}$ 在第 $j$ 个量子比特上的作用，则噪声在编码后量子比特上的影 响可写为：
+$$
+\begin{aligned}
+\varepsilon^{\otimes n}(\rho)=&\left(E_{0,1} \otimes E_{0.2} \otimes \cdots \otimes E_{0 . n}\right) \rho\left(E_{0.1}^{\dagger} \otimes E_{0,2}^{\dagger} \otimes \cdots \otimes E_{0 . n}^{\dagger}\right)+\\
+& \sum_{j=1}^{n}\left[E_{1 . j} \otimes\left(\otimes_{k \neq j} E_{0, k}\right)\right] \rho\left[E_{1 . j}^{\dagger} \otimes\left(\otimes_{k \neq j}^{\dagger} E_{0 . k}^{\dagger}\right)\right]+O\left(\gamma^{2}\right) \quad(10.47)
+\end{aligned}
+$$
+设 $E_{0}=(1-\gamma / 4) I+\gamma Z / 4+O\left(\gamma^{2}\right)$ 和 $E_{1}=\sqrt{\gamma}(X+\mathrm{i} Y) / 2$，将这些表达式带入上式就给出：
+$$
+\begin{aligned}
+\varepsilon^{\otimes n}(\rho)=&\left(1-\frac{\gamma}{4}\right)^{2 n} \rho+\frac{\gamma}{4}\left(1-\frac{\gamma}{4}\right)^{2 n-1} \sum_{j=1}^{n}\left(Z_{j} \rho+\rho Z_{j}\right)+\\
+& \frac{\gamma}{4}\left(1-\frac{\gamma}{4}\right)^{2 n-2} \sum_{j=1}^{n}\left(X_{j}+\mathrm{i} Y_{j}\right) \rho\left(X_{j}-\mathrm{i} Y_{j}\right)+O\left(\gamma^{2}\right) \quad \text { (10.48) }
+\end{aligned}
+$$
+设 $\rho$ 为这个码的状态。显然，$\rho$ 上的纠错作用是保持其不变。容易通过考虑在 $Z_{j}|\psi\rangle\langle\psi|$ 上的作用而来理解像在 $Z_{j} \rho$ 和 $\rho Z_{j}$ 项上的纠错作用，其中 $|\psi\rangle$ 为这个码的状态。我们设这个码使差错 $Z_{j}$ 把 $|\psi\rangle$ 变到正交于码的一个子空间，以便当执行差错症状测量时像 $Z_{j}|\psi\rangle\langle\psi|$ 那样项就不出现 (注意，即使不引入这个正交性假定，通过研究将这个码变到正交子空间上的差错算子，类似的分析仍然可以进行)。 因此，像 $Z_{j} \rho$ 那样的项在纠错以后会消失，像 $Z_{j} \rho, X_{j} \rho Y_{j}$ 和 $Y_{j} \rho X_{j}$ 那样的项也是如此。进而，纠错会将 $X_{j} \rho Y_{j}$ 和 $Y_{j} \rho X_{j}$ 变回到 $\rho$，因为这个码能纠正一个量子比特上的差错。因而，在纠错以后系统的状态为：
+$$
+\left(1-\frac{\gamma}{4}\right)^{2 n} \rho+2 n \frac{\gamma}{4}\left(1-\frac{\gamma}{4}\right)^{2 n-2} \rho+O\left(\gamma^{2}\right)=\rho+O\left(\gamma^{2}\right) \quad \text { (10.49) }
+$$
+因此，准确到阶 $\gamma^{2}$，纠错会使量子系统返回到它的原始状态 $\rho$，而对弱噪声 (小 $\left.\gamma\right)$，如同退极化信道那样，纠错会对差错产生净抑制。此处分析是针对幅值阻尼噪声模型的，但不难推广这个讨论到其他噪声模型并得到类似的结论。因此，一般情况下，本章的剩下部分，主要是针对那些特定噪声模型进行讨论。这些噪声模型可被理解为对应于 Pauli 矩阵差错的随机应用，这些应用类似于退极化信道，这样允许我们采用经典概率论中所熟悉的概念来进行分析。
