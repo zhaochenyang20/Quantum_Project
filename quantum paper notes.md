@@ -1,10 +1,8 @@
-## Shor algorithm
+## 背景
 
-Shor 纠错算法的本质是利用量子态的相长干涉特点将错误放大。
+早在人类有文字记录的时期，纠错码的相关思想就已经被远古时代的人类巧妙运用，古埃及人便用三种拷贝来备份文字，采用对暗号的方式确保信息传递的准确。如今，纠错这一过程大多被计算机所替代，人类发明了诸如汉明码的纠错码来指导计算机如何纠错。信息时代的革命让万物相连，这篇报告能准确地、一个比特不差地传播在读者面前，也或多或少归功于计算机约为 $10^{-17}$ 的容错率。
 
-Bacon-Shor 算法是 Shor 算法的保护版本
-
-2021年10月，门罗研究团队在实验室中实现了充分容错量子计算。
+量子计算机的效率让人们不禁畅想算力解放的时代，但量子计算机的纠错问题仍然需要加以精心设计。然而由于量子计算机的特殊性，理论的研究始终走在实验的前面，在2021年10月，门罗实验室实现的充分量子容错计算（见下图）还仅仅是非常原始的量子纠错方法。
 
 ```mermaid
 graph LR
@@ -12,9 +10,22 @@ graph LR
 	A --> |纠错| C[9物理量子比特 + 4辅助量子比特]
 ```
 
+实验上确实存在很大的挑战，不过实验和理论总是相辅相成的，在量子纠错码的研究过程当中，涌现了多种多样的方法：**有从抽象统一上考虑的 CSS 编码和稳定子理论，有从几何结构上考虑的表面码，有从空间分割上考虑的子系统码**……本文概述这几大量子纠错码的特性，提出一些可供改进当前量子纠错码的设想。
+
+## Shor algorithm
+
+Shor 纠错算法的本质是利用量子态的相长干涉特点将错误放大。
+
+Bacon-Shor 算法是 Shor 算法的保护版本
+
+
+
+
+量子计算机会与环境相互作用，使得量子叠加态无法持续，导致量子计算失去优势。量子纠错码则可通过将单个比特的信息编码到多个比特上进行纠错
+
 **是什么使量子信息处理成为可能？是什么分离了量子世界与经典世界？量子计算中正在利用哪些经典世界中无法获得的资源？**
 
-<img src="https://pic.imgdb.cn/item/62ea88c016f2c2beb18c567a.jpg" style="zoom:30%;" />
+<img src="https://pic.imgdb.cn/item/62ea88c016f2c2beb18c567a.jpg" style="zoom:20%;" />
 
 ## subsystem code papers outline
 
@@ -26,7 +37,7 @@ graph LR
 
 本文设计 $[n^2,1,n]$ 以及  $[n^3,1,n]$ 编码（使用 $n^2(n^3)$ 编码一个量子比特，编码距离为 $n$ ） 
 
-特定自纠错量子存储器(selfcorrecting quantum memory)
+特定自纠错量子存储器(self-correcting quantum memory)
 
 将一量子比特编码到两个量子比特：
 
@@ -41,7 +52,7 @@ H_{\text {int }}=\sum_{\alpha}\left[\left(I_{d} \oplus D_{\alpha}\right) \oplus 
 \end{gathered}
 $$
 
-不关心对 $\mathcal{D}$ 的作用，只关心子系统 $\mathcal{C}$ 的情况，令 $|i\rangle \otimes|k\rangle$ 为 $\mathcal{C}\otimes\mathcal{D}$ 的基，量子纠错理论改版：
+不关心对 $\mathcal{D}$ 的作用，只关心子系统 $\mathcal{C}$ 的情况，令 $|i\rangle \otimes|k\rangle$ 为 $\mathcal{C}\otimes\mathcal{D}$ 的基，把量子纠错理论进行改进：
 
 | 经典量子纠错                                                 | 子系统量子纠错                                               |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -51,7 +62,9 @@ $$
 
 **二维晶格算子量子纠错**，构造二维晶格上的算子集合 $\mathcal{T},\mathcal{S},\mathcal{L}$，构建 $[n^2,1,n]$ 编码
 
-将二维坐标一一映射到泡利算符
+**本质上就是把一维的重复编码扩展成二维，能将 $2^{n^2}$ 维的（大）希尔伯特空间分解成两个子系统，将量子信息编码到其中一个子系统中，将信息和错误部分分离，达到更好的纠错效果**
+
+将二维坐标一一映射到泡利算符，代表所有发生泡利错误的情况
 $$
 P(a, b)=\prod_{i, j=1}^{n} X_{i, j}^{a_{i, j}} Z_{i, j}^{b_{i, j}}=\prod_{i, j=1}^{n} \begin{cases}X_{i, j} & \text { if } a_{i, j}=1 \text { and } b_{i, j}=0 \\ Z_{i, j} & \text { if } a_{i, j}=0 \text { and } b_{i, j}=1 \\ -i Y_{i, j} & \text { if } a_{i, j}=1 \text { and } b_{i, j}=1\end{cases}
 $$
@@ -70,13 +83,36 @@ $$
 
 <img src="https://pic.imgdb.cn/item/62ef28c516f2c2beb127ba3a.jpg" style="zoom:25%;" />
 
-分解 $(\mathbb{C}^2)^{2^{n}}$ 希尔伯特空间 $\mathcal{H}=\underset{s^{X}, s^{Z}}{\oplus} \mathcal{H}_{s^{X}, s^{Z}}=\underset{s^{X}, s^{Z}}{\oplus} \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{T}} \otimes \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{L}}$，$\mathcal{D}$ 为前者
+$\mathcal{S}$ 可交换，分解 $(\mathbb{C}^2)^{2^{n}}$ 希尔伯特空间 $\mathcal{H}=\underset{s^{X}, s^{Z}}{\oplus} \mathcal{H}_{s^{X}, s^{Z}}=\underset{s^{X}, s^{Z}}{\oplus} \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{T}} \otimes \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{L}}$
 
-对所有 $P(a,b)$ 泡利错误，无错误时 $\in \mathcal{T}$，由此错误 $\in \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{T}}$，对 $ \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{L}}$ 无影响，无噪声系统
+而定义如下纠错序列（正交异或列），$e_{j}(a)=\oplus_{i=1}^{n} a_{i, j},\ f_{i}(b)=\oplus_{j=1}^{n} b_{i, j} $
 
-对有噪声系统....
+**无噪声子系统**：满足 $e_j=f_i=0$ 的泡利错误 $P(a,b)\in \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{T}}$，此时对 $ \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{L}}$ 无影响
 
-一些想法：**正方形晶格可不可以换成六边形晶格**？
+**有噪声子系统**：对一般的泡利错误 $P(a,b)$ 通过作用一个泡利算子使其成为无噪声子系统中的错误，即 $P^{\prime}(a,b)=Q(c,d)P(a,b)\in \mathcal{H}_{s^{X}, s^{Z}}^{\mathcal{T}}$ ， $\mathcal{S}$ 用于错误纠正，其有 $2(n-1)$ 个生成元，分别作用在 $e_{j}(a)$ 和 $f_{i}(b)$ 上，同时得到生成结果，问题转化为两个一维重复编码。
+
+而对于一堆重复编码，其奇偶校验矩阵形式为 $\left[\begin{array}{llllll}
+1 & 1 & & & & \\
+& 1 & 1 & & & \\
+& & \ \ \ddots & \ddots & & \\
+& & & \ \ \ \ 1 & 1 & \\
+& & & & 1 & 1
+\end{array}\right]$
+
+该矩阵任意 $n-1$ 列线性无关，存在 $n$ 列线性相关 （高斯消元），则其距离为 $n$
+
+从而在该二维晶格中，对有噪声子系统能为 $[n^2,1,n]$ 编码，能纠正 $\lfloor\dfrac{n-1}{2}\rfloor$ 个错误
+
+**三维晶格算子量子纠错**，与二维类似，在三维层面上加以修改，给出**“三维”错误**：
+$$
+\begin{aligned}
+P(a, b) &=\prod_{i, j, k=1}^{n} X_{i, j, k}^{a_{i, j} k} Z_{i, j,, k}^{b_{i, j, k}} \\
+&=\prod_{i, j, k=1}^{n} \begin{cases}X_{i, j, k} & \text { if } a_{i, j, k}=1 \text { and } b_{i, j, k}=0 \\
+Z_{i, j, k} & \text { if } a_{i, j, k}=0 \text { and } b_{i, j, k}=1 \\
+-i Y_{i, j, k} & \text { if } a_{i, j, k}=1 \text { and } b_{i, j, k}=1\end{cases}
+\end{aligned}
+$$
+利用相同的方式可以将错误都转换到整个大希尔伯特空间上的一个子集中，部分错误对其没有影响，剩余的错误则可以同时在每个维度上进行量子测量并加以修正。
 
 Open questions:
 
@@ -87,9 +123,9 @@ Open questions:
 
 ### Subsystem Fault Tolerance with the Bacon-Shor Code(2007)
 
-**摘要**：基于**子系统编码**在 Bacon-Shor 编码中的有效应用。FTEC 不需要纠缠附属态，实现最近两比特测量，找到**对抗随机噪声**下更低的量子准确极限 $1.94\times 10^{-4}$ 。
+**摘要**：基于**子系统编码**在 Bacon-Shor 编码中的有效应用。FTEC 不需要纠缠附属态，实现最近两比特测量，找到**对抗随机噪声**下更低的量子准确极限 $1.94\times 10^{-4}$ ，相比之前下界提高一个数量级。
 
-各种编码的性能，$\mbox{CNOT}$ 个数，理论下界，蒙特卡洛数值计算，吻合度高
+各种编码的性能，$\mbox{CNOT}$ 个数，理论下界，蒙特卡洛数值计算，吻合度高：
 $$
 \begin{equation}
 \begin{array}{llrcr}
@@ -124,13 +160,9 @@ W(\sqrt{b})=\ln \sqrt{b}-\ln \ln \sqrt{b}+\frac{\ln \ln \sqrt{b}}{\ln \sqrt{b}}+
 $$
 与当今经典计算机容错率 $10^{-17}$ 的对比，仅需要保证 $p_{Z}/p_{X}\approx 0.02$
 
-
-
-
-
 ### BCH线性编码
 
-(63,51) BCH 码的生成多项式为: 
+$(63,51)$ $\text {BCH}$ 码的生成多项式为: 
 $$
 G(x)=1+x^{2}+x^{4}+x^{7}+x^{8}+x^{9}+x^{12}\Longleftrightarrow (1010100111001)*2=(5433)*{10}
 $$
@@ -140,7 +172,9 @@ $$
 $$
 其中 $\operatorname{Rem}$ 表示在 $F_{p}[n](p=2, n=12)$ 伽罗瓦域上模 $G(x)$ 求同余
 
-# 量子信息与量子计算习题（鲁睿）
+# 量子信息与量子计算习题解答（鲁睿）
+
+> quantum computation and quantum information 是量子计算领域的圣书，但书中的习题没有官方答案，互联网上的答案也是众说纷纭，缺乏**自我纠错**的特性。本人暑假认真研读此书，结合课堂所学，详细解答了前两章量子计算基础知识中的习题，并以 $\LaTeX$ 公式呈现 ，为量子计算各领域的应用做铺垫。
 
 ## Chapter 1
 
