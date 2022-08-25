@@ -2,13 +2,13 @@
 
 
 
-## 1. 简介
+## ==1. 简介==
 
 Surface code 是一种量子纠错码，属于 stabilizer code 的一种，它的实现利用了平面的拓扑结构，具有很好的局部性，并且对于 Pauli error （由 $X$, $Y$ 算子生成）具有优秀、简明的纠错策略。和大多数的 stabilizer code 一样，surface code 可以方便地定义 $X_L, Z_L$ 算子，也很容易初始化为这些算子的特征态 $|0 \rangle, |+\rangle$。此外，通过对编码多个 logic qubit 的 surface code 进行一定的变换，则可以让我们定义 $CNOT$ gate。
 
 
 
-## 2. 背景
+## ~~2. 背景~~
 
 这里我们主要考虑 Pauli error，每个 qubit 都有可能经历随机的 $X, Z, Y(=ZX)$ 的变换，可以表达为 operator sum 的形式，如果初始时系统状态用 density operator $\rho$ 表示，则错误的作用为：
 $$
