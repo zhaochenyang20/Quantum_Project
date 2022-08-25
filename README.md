@@ -18,18 +18,63 @@
   - J. Napp and J. Preskill, Optimal Bacon-Shor codes, Quantum Info. Comput. 13, 490 (2013)
 
 
-- **Code-switching**
+- **~~Code-switching~~**
   - J. T. Anderson, G. Duclos-Cianci, and D. Poulin, Fault-Tolerant Conversion between the Steane and Reed-Muller Quantum Codes, Phys. Rev. Lett. 113, 080501 (2014)
   - C. D. Hill, et al., Fault-tolerant quantum error correction code conversion, Quantum Inf. Comput. 13, 439451 (2013)
   - H. P. Nautrup, N. Friis, and H. J. Briegel, Fault-tolerant interface between quantum memories and quantum processors. Nat Commun 8, 1321 (2017).
 
-## 备注
+# To Be Merged
 
-尝试过整理 `article-hsh` 路径下的 note，然而中英文之间没有空格的地方比较多（客观上内容太丰富了，所以很能理解，真是不容易），所以之后我考虑写个脚本来处理。
+**stage 2**
 
-基础部分的空缺：
+内容详略和衔接
 
-1. 前四章
-2. css 编码
-3. ilizer code 理论
+整体字数 1.5W ~ 2W
 
+**将改过的内容写新文件，比如 `./xxxx_refix.md`，不要删改原稿**
+
+1. 语言风格 ==@zcy==
+2. 公式统一 ==@zcy==
+3. 中英格式 ==@zcy==
+4. 调整样式（typora / Latex / 参考文献） ==@lr==
+5. 图床 ==@zcy==
+
+## Baseline（1w）
+
+1. 历史回顾，==量子错误的数学定义@hsh==，量子纠错理论（around 5k）
+
+> 包括量子纠错理论，纠错条件，差错离散化和独立差错模型
+
+2. 为具体 code 做的铺垫（around 5k）
+
+> 量子 Hamming 界，经典线性码（定义，删除例子），CSS 码 + stablize 编码（highlight）
+>
+> ==@hsh==，extract：在同级文件下面开个新的 md，然后抽出内容
+
+## surface code（5k）
+
+1. 背景在 stablize 介绍了，不再重复
+1. 构建
+
+## subsystem code（5k）
+
+1. 背景删除 ==@lr==
+2. 习题单独提交（和笔记一起作为附录）==@zcy==
+3. Shor algorithm 修改，然后注意风格统一 ==@lr==
+4. paper 作为 appendix，写参考文献（写对应关系，不必在意样式），不按 paper 为小标题 ==@lr==
+5. 考虑数学公式的可解释，如果解释不清楚，就删了 ==@lr==
+
+## Pipeline
+
+### 8.27 23:59:00
+
+- [ ] 量子错误的数学定义& extract 具体的 code @hsh
+- [ ] Subsystem 风格统一 + 解释 + 标题 @lr
+
+------
+### 8.28 23:59:00
+
+- [ ] 语言风格 + 公式统一 + 中英文格式 + 图床 @zcy
+-----
+### 8.30 23:59:00
+- [ ] 样式 / perhaps Latex @lr & zcy
