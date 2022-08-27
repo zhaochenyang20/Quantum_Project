@@ -68,7 +68,7 @@
 
 ### 8.27 23:59:00
 
-- [ ] 量子错误的数学定义& extract 具体的 code @hsh
+- [x] 量子错误的数学定义& extract 具体的 code @hsh
 - [ ] Subsystem 风格统一 + 解释 + 标题 @lr
 
 ------
