@@ -141,7 +141,7 @@ $$
 2. $\mathcal{S}$ 上的算子满足所有全包括 $X$ 的行个数为偶数个，所有全包括 $Z$ 的列个数也为偶数个，交叉点同理，可参考图 $\mathcal{S}$；
 3. $\mathcal{L}$ 上的算子满足所有全包括 $X$ 的行个数为奇数个，所有全包括 $Z$ 的列个数也为奇数个，交叉点同理，可参考图 $\mathcal{L}$；
 
-<img src="https://pic.imgdb.cn/item/62ef28c516f2c2beb127ba3a.jpg" style="zoom:25%;" />
+<img src=lattice_graph.jpeg style="zoom:25%;" />
 
 由于 **$\mathcal{S}$ 可交换**，可分解 $(\mathbb{C}^2)^{2^{n}}$ 希尔伯特空间为 
 $$
