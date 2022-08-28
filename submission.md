@@ -571,7 +571,7 @@ $$
 
 
 
-# 案例研究：Surface code
+# Surface code
 
 Surface code 是一种量子纠错码，属于 stabilizer code 的一种，它可以定义在任何一种表面的格点上，比如说： $g$-torus、平面，具有很好的局部性，尤其对于 Pauli error （由每个 physical qubit 上的 $X$, $Z$ 错误生成）具有简单直观的纠错策略。接下来我们将主要介绍平面码和圆环码，在这些编码上的 $X_L$、$Z_L$、$CNOT$ 算子的构造，以及测量和初始化的方法。
 
