@@ -1224,21 +1224,3 @@ $$
 W(\sqrt{b})=\ln \sqrt{b}-\ln \ln \sqrt{b}+\dfrac{\ln \ln \sqrt{b}}{\ln \sqrt{b}}+O\left(\dfrac{\ln \ln \sqrt{b}}{\ln ^{2} \sqrt{b}}\right)
 $$
 这与现代计算机容错率 $10^{-17}$ 对比，仅需要保证 $p_{Z}/p_{X}\approx 0.02$ 的条件，说明在噪声有偏向的特殊情形下，子系统编码具有一定的优越性。
-
-## **参考文献**
-
-[1] Nielsen, M.A and Chuang, I. L. *Quantum Computation and Quantum Information: 10th Anniversary Edition*, Cambridge University Press, (2010)
-
-[2] A. G. Fowler, et al., *Surface codes: Towards practical large-scale quantum computation*, Phys. Rev. A 86, 032324 (2012)
-
-[3] C. Horsman, et al., *Surface code quantum computing by lattice surgery*, New J. Phys. 14123011 (2012)
-
-[4] H. Bombin and M. A. Martin-Delgado, *Optimal resources for topological two-dimensional stabilizer codes: Comparative study*, Phys. Rev. A 76, 012305 (2007)
-
-[5] Y. Tomita and K. M. Svore, *Low-distance surface codes under realistic quantum noise*, Phys. Rev. A 90, 062320 (2014)
-
-[6] D. Bacon, *Operator quantum error-correcting subsystems for self-correcting quantum memories*, Phys. Rev. A 73, 012340 (2006)
-
-[7] P. Aliferis and A. W. Cross, *Subsystem Fault Tolerance with the BaconShor Code*, Phys. Rev. Lett. 98, 220502 (2007)
-
-[8] J. Napp and J. Preskill, *Optimal Bacon-Shor codes*, Quantum Info. Comput. 13, 490 (2013)
