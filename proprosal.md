@@ -81,14 +81,14 @@
 
 - [x] 二位开分支，把你们的主要部分 merge 进入根目录下的 ./submission.md，注意前后衔接，实在衔接不上就加入衔接词
 
-- [ ] 写参考文献和书籍
+- [x] 写参考文献和书籍
 
 - [x] merge 结束了，师兄操刀删改下  ./submission.md，主要是删
 
-- [ ] 删完了，鲁大师来复查下  ./submission.md，主要看逻辑链条
+- [x] 删完了，鲁大师来复查下  ./submission.md，主要看逻辑链条
 
-- [ ] 这些做完了，我来写完整 readme，然后鲁大师分别导出 readme.pdf 和 submission.pdf，注意样式 / perhaps Latex @lr & zcy
+- [x] 这些做完了，我来写完整 readme，然后鲁大师分别导出 readme.pdf 和 submission.pdf，注意样式 / perhaps Latex @lr & zcy
 
-- [ ] 师兄最后审核下，结束了我就去交了
+- [x] 师兄最后审核下，结束了我就去交了
 
   
