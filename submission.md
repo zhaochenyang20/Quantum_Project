@@ -11,6 +11,9 @@
 <div style="width:64px;float:left; font-family:方正公文黑体;"><b>关键词: </b></div> 
 <div style="overflow:hidden;line-height:16pt">量子纠错; CSS 编码; 稳定子理论; 表面码编码; 子系统编码; </div>
 </div>
+
+
+
 # Quantum Error-correction Coding
 
 <center><div style='height:2mm;'></div><div style="font-size:14pt;">Shuhong Huang, Rui Lu, Chenyang Zhao</div></center>
@@ -25,6 +28,7 @@
 <div style="width:90px;float:left;line-height:16pt"><b>Key Words: </b></div> 
 <div style="overflow:hidden;line-height:16pt">Quantum error correction;  CSS code;  Stable son theory;  Surface code code;  Subsystem code; </div>
 </div>
+
 [TOC]
 
 量子纠错主要讨论在存在噪声的情况下，如何可靠地进行量子信息处理。论文第一节将首先讨论量子纠错码的基本理论——它如何能抵抗噪声以保护量子信息。随后，我们研究一个具体的稳定子码的案例：Surface code，它是现在最为主流的量子纠错码。最后，我们拓展稳定子码的定义，研究子系统码，这对我们设计新的量子纠错码具有很大的启发意义。
@@ -34,7 +38,8 @@
 ### 噪声
 
 噪声在日常系统中无处不在，为了能够让系统正常工作，我们往往采用冗余编码的方式来编码信息，这样即使受到噪声污染，也有办法从中恢复原来编码的信息。
-下图展示了一个一个有噪声的信道。信道中噪声的影响是以概率 $p>0$ 将正在被传输的比特翻转，而以概率 $1-p$ 使比特无差错地传输。这种信道称为二元对称信道 (binary symmetric channel)。可做如下编码：
+
+假设存在一个有噪声的信道，信道中噪声的影响是以概率 $p>0$ 将正在被传输的比特翻转，而以概率 $1-p$ 使比特无差错地传输。这种信道称为二元对称信道 (binary symmetric channel)。可做如下编码：
 $$
 \begin{aligned}
 0 & \rightarrow 000 \\
@@ -42,19 +47,6 @@ $$
 \end{aligned}
 $$
 这个比特串 000 和 111 有时被叫做逻辑 0 和逻辑 1，因为它们分别扮演了 0 和 1 的角色。我们现在通过信道发送所有这三个比特。接收方采用多数表决很大概率可以恢复原有的信息，只要我们假设错误发生的概率不大。
-
-```mermaid
-flowchart LR
-			A([0])
-      B([1])
-      C([0])
-      D([1])
-      B--p-->C
-      B--1-P-->D
-      A--P-->D
-      A--1-P-->C
-      
-```
 
 ### 量子噪声
 
@@ -140,7 +132,9 @@ $$
 $$
 Z_{1} Z_{2}=(|00\rangle\langle 00|+| 11\rangle\langle 11|) \otimes I-(|01\rangle\langle 01|+| 10\rangle\langle 10|) \otimes I
 $$
-它对应于具有投影算子 $(|00\rangle\langle 00|+| 11\rangle\langle 11|) \otimes I$ 和 $(|01\rangle\langle 01|+| 10\rangle\langle 10|) \otimes I$ 的一个投影测量。因此，测量 $Z_{1} Z_{2}$ 可被想象为来比较第一个量子比特和第二个量 子比特的值，若它们相同给出 $+1$，若它们不同给出 $-1$。类似地，测量 $Z_{2} Z_{3}$ 被想象为比较第二个量子比特和第三个量子比特的值，若它们相同给出 $+1$，若它们不同给出 $-1$。组合这两个测量结果，我们就能确定是否有比特翻转出现在量子比特中的一个比特上，如果有那么还可来确定是哪一种：若两者测量结果都给出 $+1$，则以高概率没有比特翻转出现；若测量 $Z_{1} Z_{2}$ 给出 $+1$ 而测量 $Z_{2} Z_{3}$ 给出 $-1$，则以高概率只有第三个量子比特翻转；若测量 $Z_{1} Z_{2}$ 给出 $-1$ 而测量 $Z_{2} Z_{3}$ 给出 $+1$，则以高概率只有第一个量子比特翻转；最后，若两者测量结果都给出 $-1$，则以高概率只有第二个量子比特翻转。这些测量成功的关键是，两个测量都不会给出有关编码后量子状态的幅值 $a$ 和 $b$ 的任何信息，因而两个测量都不会破坏我们用此编码来保护的量子状态的叠加。
+它对应于具有投影算子 $(|00\rangle\langle 00|+| 11\rangle\langle 11|) \otimes I$ 和 $(|01\rangle\langle 01|+| 10\rangle\langle 10|) \otimes I$ 的一个投影测量。因此，测量 $Z_{1} Z_{2}$ 可被想象为来比较第一个量子比特和第二个量 子比特的值，若它们相同给出 $+1$，若它们不同给出 $-1$。类似地，测量 $Z_{2} Z_{3}$ 被想象为比较第二个量子比特和第三个量子比特的值，若它们相同给出 $+1$，若它们不同给出 $-1$。
+
+组合这两个测量结果，我们就能确定是否有比特翻转出现在量子比特中的一个比特上，如果有那么还可来确定是哪一种：若两者测量结果都给出 $+1$，则以高概率没有比特翻转出现；若测量 $Z_{1} Z_{2}$ 给出 $+1$ 而测量 $Z_{2} Z_{3}$ 给出 $-1$，则以高概率只有第三个量子比特翻转；若测量 $Z_{1} Z_{2}$ 给出 $-1$ 而测量 $Z_{2} Z_{3}$ 给出 $+1$，则以高概率只有第一个量子比特翻转；最后，若两者测量结果都给出 $-1$，则以高概率只有第二个量子比特翻转。这些测量成功的关键是，两个测量都不会给出有关编码后量子状态的幅值 $a$ 和 $b$ 的任何信息，因而两个测量都不会破坏我们用此编码来保护的量子状态的叠加。
 
 ### 三量子比特的相位翻转码
 
@@ -156,19 +150,21 @@ $$
 有一种简单的量子码能针对单量子比特上任意差错的影响进行保护。这种码就是以其发明者命名的 Shor 码，它是量子比特相位翻转码和三量子比特比特翻转码的组合。我们首先用相位翻转码来编码量子比特: $|0\rangle \rightarrow|+++\rangle,|1\rangle \rightarrow$ $|---\rangle$。其次，我们用三个量子比特比特翻转码来编码这些量子比特中的每个：$|+\rangle$ 编码为 $(|000\rangle+|111\rangle) / \sqrt{2},|-\rangle$ 编码为 $(|000\rangle-|111\rangle) / \sqrt{2}$。这个结果为 9 量子比特，其码字为：
 $$
 \begin{array}{l}
-|0\rangle \rightarrow\left|0_{\mathrm{L}}\right\rangle \equiv \frac{(|000\rangle+|111\rangle)(|000\rangle+|111\rangle)(|000\rangle+|111\rangle)}{2 \sqrt{2}} \\
-|1\rangle \rightarrow\left|1_{\mathrm{L}}\right\rangle \equiv \frac{(|000\rangle-|111\rangle)(|000\rangle-|111\rangle)(|000\rangle-|111\rangle)}{2 \sqrt{2}}
+|0\rangle \rightarrow\left|0_{\mathrm{L}}\right\rangle \equiv \dfrac{(|000\rangle+|111\rangle)(|000\rangle+|111\rangle)(|000\rangle+|111\rangle)}{2 \sqrt{2}} \\
+|1\rangle \rightarrow\left|1_{\mathrm{L}}\right\rangle \equiv \dfrac{(|000\rangle-|111\rangle)(|000\rangle-|111\rangle)(|000\rangle-|111\rangle)}{2 \sqrt{2}}
 \end{array}
 $$
 
 Shor 码能对任一量子比特上的相位翻转差错和比特翻转差错进行保护。为看清这点，设比特翻转出现在第一个量子比特上。就比特翻转码来说，我们执行对 $Z_{1} Z_{2}$ 的一次测量，并比较前两个量子比特，发现它们不同。基此我们得出结论，比特翻转差错出现在第一或第二量子比特。下一步，我们通过执行对 $Z_{2} Z_{3}$ 的一次测量来比较第二和第三量子比特。我们发现它们相同，所以第二量子比特不可能出现翻转。据此得到结论，第一量子比特必出现了翻转，只要再一次翻转第一量子比特就会从差错中恢复，回复到原来的状态。按类似的方法，我们就能从这个码中检测和恢复出 9 个量子比特的任意一个受比特翻转差错影响的比特。
 
-我们现以类似的方式来处理量子比特上的相位翻转。设相位翻转出现在第一量子比特上。这个相位翻转使第一量子比特块中的符号翻转，变 $(|000\rangle+|111\rangle)$ 为 $(|000\rangle-|111\rangle)$，反之亦然。事实上，前三个量子比特中任意一个上的相位翻转都具有这种影响，我们所描述的纠错方法对这三种可能差错中的任意一种都能奏效。差错症状测量开始于比较第一个和第二个三量子比特块的符号，就像对相位翻转码的差错症状测量开始于比较第一和第二量子比特一样。举例来说，(| 000>一 $|111\rangle)(|000\rangle \cdots|111\rangle)$ 在两个量子比特块中具有相同符号 $(-)$，而 $(|000\rangle-$ $|111\rangle)(|000\rangle+|111\rangle)$ 具有不同符号。当相位翻转出现在前三个量子比特中任意一个上时，我们发现第一和第二量子比特块的符号为不同。差错症状测量的第二阶段和最后阶段是来比较第二和第三量子比特块的符号。我们发现这些符号为相同，并得到结论在第一个三量子比特块中必有翻转。通过翻转第一个三量子比特块中的符号，我们就会将其恢复到它的原来的值。以类似的方式，我们还可恢复 9 个量子比特中任意一个上的相位翻转。
+我们现以类似的方式来处理量子比特上的相位翻转。设相位翻转出现在第一量子比特上。这个相位翻转使第一量子比特块中的符号翻转，变 $(|000\rangle+|111\rangle)$ 为 $(|000\rangle-|111\rangle)$，反之亦然。事实上，前三个量子比特中任意一个上的相位翻转都具有这种影响，我们所描述的纠错方法对这三种可能差错中的任意一种都能奏效。
+
+差错症状测量开始于比较第一个和第二个三量子比特块的符号，就像对相位翻转码的差错症状测量开始于比较第一和第二量子比特一样。举例来说，(| 000>一 $|111\rangle)(|000\rangle \cdots|111\rangle)$ 在两个量子比特块中具有相同符号 $(-)$，而 $(|000\rangle-$ $|111\rangle)(|000\rangle+|111\rangle)$ 具有不同符号。当相位翻转出现在前三个量子比特中任意一个上时，我们发现第一和第二量子比特块的符号为不同。差错症状测量的第二阶段和最后阶段是来比较第二和第三量子比特块的符号。我们发现这些符号为相同，并得到结论在第一个三量子比特块中必有翻转。通过翻转第一个三量子比特块中的符号，我们就会将其恢复到它的原来的值。以类似的方式，我们还可恢复 9 个量子比特中任意一个上的相位翻转。
 
 设比特翻转和相位翻转差错两者同时出现在第一量子比特上，也即算子 $Z_{1} X_{1}$ 作用于那个量子比特上。那么，容易看出，检测比特翻转差错的方法将可来检测第一量子比特上的比特翻转并对其纠正，检测相位翻转差错的方法将可来检测第一个三量子比特块上的相位翻转并对其纠正。因此，Shor 码也能来纠正单量子比特上比特翻转和相位翻转的组合差错。
 
 事实上，Shor 码对单量子比特上的保护要比比特翻转和相位翻转差错多得多一一我们现来证明，Shor 码可对完全任意的差错进行保护，只要规定它们仅影响一个单量子比特。
-为简化分析，设一个任意类型的噪声只出现在第一量子比特上。我们用保迹量子运算 $\varepsilon$ 来描述噪声，分析纠错的最为方便的做法是将 $\varepsilon$ 展开为具有运算元 $\left\{E_{i}\right\}$ 的算子和表示。设噪声作用前编码后的量子比特状态为： $|\psi\rangle=\alpha\left|0_{\mathrm{L}}\right\rangle+\beta\left|1_{\mathrm{L}}\right\rangle$，则噪声作用以后这个状态为 $\varepsilon(|\psi\rangle\langle\psi|)=\sum_{i} E_{i}|\psi\rangle\langle\psi| E_{i}^{\dagger}$。为分析纠错的作用，最容易的做法是把纠错作用集中到这个和式的一个单项上，比如说 $E_{i}|\psi\rangle\langle\psi| E_{i}^{\dagger}$。作为第一量子比特上的一个单独的算子 $E_{i}$，可以被展开为单位阵 $I$ 、比特翻转 $X_{1}$ 、相位翻转 $Z_{1}$ 以及组合位与相位翻转 $X_{1} Z_{1}$ 的一个线性组合：
+为简化分析，设一个任意类型的噪声只出现在第一量子比特上。我们用保迹量子运算 $\varepsilon$ 来描述噪声，分析纠错的最为方便的做法是将 $\varepsilon$ 展开为具有运算元 $\left\{E_{i}\right\}$ 的算子和表示。设噪声作用前编码后的量子比特状态为： $|\psi\rangle=\alpha\left|0_{\mathrm{L}}\right\rangle+\beta\left|1_{\mathrm{L}}\right\rangle$，则噪声作用以后这个状态为 $\varepsilon(|\psi\rangle\langle\psi|)=\displaystyle \displaystyle \sum_{i} E_{i}|\psi\rangle\langle\psi| E_{i}^{\dagger}$。为分析纠错的作用，最容易的做法是把纠错作用集中到这个和式的一个单项上，比如说 $E_{i}|\psi\rangle\langle\psi| E_{i}^{\dagger}$。作为第一量子比特上的一个单独的算子 $E_{i}$，可以被展开为单位阵 $I$ 、比特翻转 $X_{1}$ 、相位翻转 $Z_{1}$ 以及组合位与相位翻转 $X_{1} Z_{1}$ 的一个线性组合：
 $$
 E_{i}=e_{i 0} I+e_{i 1} X_{1}+e_{i 2} Z_{1}+e_{i 3} X_{1} Z_{1}
 $$
@@ -202,7 +198,7 @@ $$
 
  我们已经讨论了针对一种特定噪声过程的量子信息的保护。但是，一般来说，我们并不准确知道量子系统遭受的是什么噪声。如果特定码 $C$ 和纠错运算 $\mathscr{R}$ 能被用于针对全部类型噪声过程的保护，那么这将会非常有用。幸运的是，量子纠错条件很容易用于严格地提供这类保护。
 
-定理：设 $C$ 为量子码，$\mathscr{R}$ 为符合量子纠错条件的纠错运算，用以从具有算子元 $\left\{E_{i}\right\}$ 的噪声过程中恢复。设 $\mathscr{F}$ 为具有运算元 $\left\{F_{j}\right\}$ 的量子运算，运算元 $\left\{F_{j}\right\}$ 为 $E_{i}$ 的线性组合，即对某个复数矩阵 $m_{j i}$ 有 $F_{j}=\sum_{i} m_{j i} E_{i}$。那么，纠错运算 $\mathscr{R}$ 也可对码 $C$ 上的噪声过程 $\mathscr{F}$ 的作用来进行纠正。
+定理：设 $C$ 为量子码，$\mathscr{R}$ 为符合量子纠错条件的纠错运算，用以从具有算子元 $\left\{E_{i}\right\}$ 的噪声过程中恢复。设 $\mathscr{F}$ 为具有运算元 $\left\{F_{j}\right\}$ 的量子运算，运算元 $\left\{F_{j}\right\}$ 为 $E_{i}$ 的线性组合，即对某个复数矩阵 $m_{j i}$ 有 $F_{j}=\displaystyle \sum_{i} m_{j i} E_{i}$。那么，纠错运算 $\mathscr{R}$ 也可对码 $C$ 上的噪声过程 $\mathscr{F}$ 的作用来进行纠正。
 
 由此，一噪声过程 $\varepsilon$，其运算元由这些差错算子 $\left\{E_{i}\right\}$ 的线性组合而成，都将通过恢复运算 $\mathscr{R}$ 可被纠正。
 
@@ -222,7 +218,7 @@ $$
 
 设我们用能纠正任何单量子比特上差错的一个 $n$ 量子比特量子码来对一个单量子比特信息编码。设具有参数 $p$ 的退极化信道独立地作用于这个量子比特中的每一个，则在所有 $n$ 个量子比特上所引起的联合作用为：
 $$
-\varepsilon^{\otimes n}(\rho)=(1-p)^{n} \rho+\sum_{j=1}^{n} \sum_{k=1}^{3}(1-p)^{n-1} \frac{p}{3} \sigma_{k}^{j} \rho \sigma_{k}^{j}+\cdots
+\varepsilon^{\otimes n}(\rho)=(1-p)^{n} \rho+\sum_{j=1}^{n} \sum_{k=1}^{3}(1-p)^{n-1} \dfrac{p}{3} \sigma_{k}^{j} \rho \sigma_{k}^{j}+\cdots
 $$
 其中$\cdots$表示均为正且在分析时将丢弃的高阶项。纠错执行以后，只要 $\rho$ 原来处于码中，出现在这个和式中的所有项将会被回复到状态 $\rho$ :
 $$
@@ -230,7 +226,7 @@ $$
 $$
 所以保真度满足：
 $$
-F \geqslant \sqrt{(1-p)^{n-1}(1-p+n p)}=1-\frac{\left(\begin{array}{l}
+F \geqslant \sqrt{(1-p)^{n-1}(1-p+n p)}=1-\dfrac{\left(\begin{array}{l}
 n \\
 2
 \end{array}\right)}{2} p^{2}+O\left(p^{3}\right)
@@ -249,13 +245,13 @@ $$
 设 $E_{0}=(1-\gamma / 4) I+\gamma Z / 4+O\left(\gamma^{2}\right)$ 和 $E_{1}=\sqrt{\gamma}(X+\mathrm{i} Y) / 2$，将这些表达式带入上式就给出：
 $$
 \begin{aligned}
-\varepsilon^{\otimes n}(\rho)=&\left(1-\frac{\gamma}{4}\right)^{2 n} \rho+\frac{\gamma}{4}\left(1-\frac{\gamma}{4}\right)^{2 n-1} \sum_{j=1}^{n}\left(Z_{j} \rho+\rho Z_{j}\right)+\\
-& \frac{\gamma}{4}\left(1-\frac{\gamma}{4}\right)^{2 n-2} \sum_{j=1}^{n}\left(X_{j}+\mathrm{i} Y_{j}\right) \rho\left(X_{j}-\mathrm{i} Y_{j}\right)+O\left(\gamma^{2}\right)
+\varepsilon^{\otimes n}(\rho)=&\left(1-\dfrac{\gamma}{4}\right)^{2 n} \rho+\dfrac{\gamma}{4}\left(1-\dfrac{\gamma}{4}\right)^{2 n-1} \sum_{j=1}^{n}\left(Z_{j} \rho+\rho Z_{j}\right)+\\
+& \dfrac{\gamma}{4}\left(1-\dfrac{\gamma}{4}\right)^{2 n-2} \sum_{j=1}^{n}\left(X_{j}+\mathrm{i} Y_{j}\right) \rho\left(X_{j}-\mathrm{i} Y_{j}\right)+O\left(\gamma^{2}\right)
 \end{aligned}
 $$
 设 $\rho$ 为这个码的状态。显然，$\rho$ 上的纠错作用是保持其不变。容易通过考虑在 $Z_{j}|\psi\rangle\langle\psi|$ 上的作用而来理解像在 $Z_{j} \rho$ 和 $\rho Z_{j}$ 项上的纠错作用，其中 $|\psi\rangle$ 为这个码的状态。我们设这个码使差错 $Z_{j}$ 把 $|\psi\rangle$ 变到正交于码的一个子空间，以便当执行差错症状测量时像 $Z_{j}|\psi\rangle\langle\psi|$ 那样项就不出现 (注意，即使不引入这个正交性假定，通过研究将这个码变到正交子空间上的差错算子，类似的分析仍然可以进行)。 因此，像 $Z_{j} \rho$ 那样的项在纠错以后会消失，像 $Z_{j} \rho, X_{j} \rho Y_{j}$ 和 $Y_{j} \rho X_{j}$ 那样的项也是如此。进而，纠错会将 $X_{j} \rho Y_{j}$ 和 $Y_{j} \rho X_{j}$ 变回到 $\rho$，因为这个码能纠正一个量子比特上的差错。因而，在纠错以后系统的状态为：
 $$
-\left(1-\frac{\gamma}{4}\right)^{2 n} \rho+2 n \frac{\gamma}{4}\left(1-\frac{\gamma}{4}\right)^{2 n-2} \rho+O\left(\gamma^{2}\right)=\rho+O\left(\gamma^{2}\right)
+\left(1-\dfrac{\gamma}{4}\right)^{2 n} \rho+2 n \dfrac{\gamma}{4}\left(1-\dfrac{\gamma}{4}\right)^{2 n-2} \rho+O\left(\gamma^{2}\right)=\rho+O\left(\gamma^{2}\right)
 $$
 因此，准确到阶 $\gamma^{2}$，纠错会使量子系统返回到它的原始状态 $\rho$，而对弱噪声 (小 $\left.\gamma\right)$，如同退极化信道那样，纠错会对差错产生净抑制。此处分析是针对幅值阻尼噪声模型的，但不难推广这个讨论到其他噪声模型并得到类似的结论。
 
@@ -291,7 +287,7 @@ $$
 
 编码 $k$ 个量子比特信息到 $n$ 个比特码空间的一个线性码 $C$，可由一个 $n \times k$ 生成矩阵 $G$ 来指定，$G$ 的所有元属于 $\boldsymbol{Z}_{2}$ 即 0 和 1。矩阵 $G$ 将信息映射到其编好的码。因此，$k$ 个比特消息 $x$ 被编码为 $G x$，其中消息 $x$ 被显式地当成为一个列向量。算术运算都是模 2 的。
 
-例如：用每个比特的三次重复来编码两个比特一个 $[6,2]$ 码。这个例子具有生成矩阵：
+例如，用每个比特的三次重复来编码两个比特一个 $[6,2]$ 码。这个例子具有生成矩阵：
 $$
 G=\left[\begin{array}{ll}
 1 & 0 \\
@@ -337,52 +333,52 @@ $$
 
 设 $C_{1}$ 和 $C_{2}$ 为 $\left[n, k_{1}\right]$ 和 $\left[n, k_{2}\right]$ 经典线性码，使有 $C_{2} \subset C_{1}$且 $C_{1}$ 和 $C_{2}^{\perp}$。两者可纠正 $t$ 个差错。通过下面的构造，我们将要定义能纠正 $t$ 个量子比特上差错的一个 $\left[n, k_{1}-k_{2}\right]$ 量子码  $\operatorname{CSS}\left(C_{1},C_{2}\right)$。即 $C_{2}$ 上 $C_{1}$ 的 $\operatorname{CSS}$ 码。设 $x \in C_{1}$ 为 $C_{1}$ 中的任一码字，那么，我们就定义量子状态 $\left|x+C_{2}\right\rangle$ 为：
 $$
-\left|x+C_{2}\right\rangle \equiv \frac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}|x+y\rangle
+\left|x+C_{2}\right\rangle \equiv \dfrac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}|x+y\rangle
 $$
-其中，“ +” 为按比特的模 2 方式加。设 $x^{\prime}$ 为 $C_{1}$ 的一个元，使有 $x-x^{\prime} \in C_{2}$。那么，容易看到 $\left|x+C_{2}\right\rangle=\left|x^{\prime}+C_{2}\right\rangle$，因此状态 $\left|x+C_{2}\right\rangle$ 只依赖于 $x$ 所在的陪集 $C_{1} / C_{2}$，这同时解释了我们已用于 $\left|x+C_{2}\right\rangle$ 的陪集符号。进而，如果 $x$ 和 $x^{\prime}$ 属于 $C_{2}$ 的不同陪集，那么不存在 $y, y^{\prime} \in C_{2}$，使得 $x+y=x^{\prime}+y^{\prime}$，因而 $\left|x+C_{2}\right\rangle$ 和 $\left|x^{\prime}+C_{2}\right\rangle$ 为正交状态。量子码  $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 就定义为由所有 $x \in C_{1}$ 的状态 $\left|x+C_{2}\right\rangle$ 所张成的向量空间。$C_{1}$ 中 $C_{2}$ 的陪集的数目为 $\left|C_{1}\right| /\left|C_{2}\right|$，所以 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 的维数为 $\left|C_{1}\right| /\left|C_{2}\right|=$ $2^{k_{1}-k_{2}}$，因此 $\operatorname{cSS}\left(C_{1}, C_{2}\right)$ 是一个 $\left[n, k_{1}-k_{2}\right]$ 量子码。
+其中，“ +” 为按比特的模 2 方式加。设 $x^{\prime}$ 为 $C_{1}$ 的一个元，使有 $x-x^{\prime} \in C_{2}$。那么，容易看到 $\left|x+C_{2}\right\rangle=\left|x^{\prime}+C_{2}\right\rangle$，因此状态 $\left|x+C_{2}\right\rangle$ 只依赖于 $x$ 所在的陪集 $C_{1} / C_{2}$，这同时解释了我们已用于 $\left|x+C_{2}\right\rangle$ 的陪集符号。进而，如果 $x$ 和 $x^{\prime}$ 属于 $C_{2}$ 的不同陪集，那么不存在 $y, y^{\prime} \in C_{2}$，使得 $x+y=x^{\prime}+y^{\prime}$，因而 $\left|x+C_{2}\right\rangle$ 和 $\left|x^{\prime}+C_{2}\right\rangle$ 为正交状态。量子码  $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 就定义为由所有 $x \in C_{1}$ 的状态 $\left|x+C_{2}\right\rangle$ 所张成的向量空间。$C_{1}$ 中 $C_{2}$ 的陪集的数目为 $\left|C_{1}\right| /\left|C_{2}\right|$，所以 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 的维数为 $\left|C_{1}\right| /\left|C_{2}\right|=$ $2^{k_{1}-k_{2}}$，因此 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 是一个 $\left[n, k_{1}-k_{2}\right]$ 量子码。
 
 可以利用 $C_{1}$ 和 $C_{2}^{\perp}$ 的经典纠错性质来检测和纠正量子差错。事实上，通过分别利用 $C_{1}$ 和 $C_{2}^{\perp}$ 的纠错性质，有可能对 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 上最多 $t$ 个比特翻转差错和相位翻转差错进行纠错。设比特翻转差错由 $n$ 比特向量 $e_{1}$ 来描述，且在比特翻转出现的比特上为 1，在其他比特上为 0。相位翻转差错由 $n$ 比特向量 $e_{2}$ 来描述，且在相位翻转出现的比特上为 1，在其他位上为 0。如果 $\left|x+C_{2}\right\rangle$ 为原始状态，那么受污染后的状态为：
 $$
-\frac{1}{\sqrt{\mid C_{2} T}} \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}\left|x+y+e_{1}\right\rangle
+\dfrac{1}{\sqrt{\mid C_{2} T}} \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}\left|x+y+e_{1}\right\rangle
 $$
 为检测比特翻转出现在什么地方，方便的做法是引人一个辅助码。包含足够多量子比特来存储码 $C_{1}$ 的差错症状，且初始处于全 0 状态 $|0\rangle$。我们采用可逆计算，即对码 $C_{1}$ 应用奇偶矩阵 $H_{1}$, 把 $\left|x+y+e_{1}\right\rangle|0\rangle$ 变到 $\left|x+y+e_{1}\right\rangle\left|H_{1}\left(x+y+e_{1}\right)\right\rangle=\mid x+$ $\left.y+e_{1}\right\rangle\left|H_{1} e_{1}\right\rangle$，因为通过奇偶检验矩阵 $x+y \in C_{1}$ 可消去。这个运算的作用是来产生状态：
 $$
-\frac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}\left|x+y+e_{1}\right\rangle\left|H_{1} e_{1}\right\rangle
+\dfrac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}\left|x+y+e_{1}\right\rangle\left|H_{1} e_{1}\right\rangle
 $$
 对比特翻转差错的差错检测是通过测量辅助码得到结果 $H_{1} e_{1}$ 并消去辅助码而完成的，并给出状态为：
 $$
-\frac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}\left|x+y+e_{1}\right\rangle
+\dfrac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}\left|x+y+e_{1}\right\rangle
 $$
 得到差错症状 $H_{1} e_{1}$ 后，就可以推断差错 $e_{1}$，因为 $C_{1}$ 能纠正最多 $t$ 个差错，这就完成了差错检测。恢复可简单地通过对差错 $e_{1}$ 中出现比特翻转的位置上应用非门而执行，消去所有比特翻转差错后给出状态：
 $$
-\frac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}|x+y\rangle
+\dfrac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}|x+y\rangle
 $$
 为检测相位翻转差错，我们对每个量子比特应用 Hadamard 门，把状态变为：
 $$
-\frac{1}{\sqrt{\left|C_{2}\right| 2^{n}}} \sum_{z} \sum_{y \in C_{2}}(-1)^{(x+y)\left(e_{2}+z\right)}|z\rangle
+\dfrac{1}{\sqrt{\left|C_{2}\right| 2^{n}}} \sum_{z} \sum_{y \in C_{2}}(-1)^{(x+y)\left(e_{2}+z\right)}|z\rangle
 $$
 
 其中，求和取遍 $n$ 个量子比特 $z$ 的所有可能值。令 $z^{\prime} \equiv z+e_{2}$，则这个状态可重写为：
 $$
-\frac{1}{\sqrt{\left|C_{2}\right| 2^{n}}} \sum_{z^{\prime}} \sum_{y \in C_{2}}(-1)^{(x+y) z^{\prime}}\left|z^{\prime}+e_{2}\right\rangle
+\dfrac{1}{\sqrt{\left|C_{2}\right| 2^{n}}} \sum_{z^{\prime}} \sum_{y \in C_{2}}(-1)^{(x+y) z^{\prime}}\left|z^{\prime}+e_{2}\right\rangle
 $$
-设 $z^{\prime} \in C_{2}^{\perp}$，则容易看到 $\sum_{y \in C_{2}}(-1)^{y \cdot z^{\prime}}=\left|C_{2}\right|$，而若 $z^{\prime} \notin C_{2}^{\perp}$ 则 $\sum_{y \in C_{2}}(-1)^{y k^{\prime}}=0$。因此，状态可重写为：
+设 $z^{\prime} \in C_{2}^{\perp}$，则容易看到 $\displaystyle \sum_{y \in C_{2}}(-1)^{y \cdot z^{\prime}}=\left|C_{2}\right|$，而若 $z^{\prime} \notin C_{2}^{\perp}$ 则 $\displaystyle \sum_{y \in C_{2}}(-1)^{y k^{\prime}}=0$。因此，状态可重写为：
 $$
-\frac{1}{\sqrt{2^{n} /\left|C_{2}\right|}} \sum_{z^{\prime} \in C_{2}^{\perp}}(-1)^{x^{\prime}}\left|z^{\prime}+e_{2}\right\rangle
+\dfrac{1}{\sqrt{2^{n} /\left|C_{2}\right|}} \sum_{z^{\prime} \in C_{2}^{\perp}}(-1)^{x^{\prime}}\left|z^{\prime}+e_{2}\right\rangle
 $$
 这个关系式看上去正好就是由向量 $e_{2}$ 描述的比特翻转差错。至于比特翻转的差错检测，我们引入一个辅助码并对 $C_{2}^{\perp}$ 逆向地应用奇偶检验矩阵 $H_{2}$ 以得到 $H_{2} e_{2}$，并纠正比特翻转差错 $e_{2}$，得到状态为：
 $$
-\frac{1}{\sqrt{2^{n} /\left|C_{2}\right|}} \sum_{z^{\prime} \in C_{2}^{\frac{1}{2}}}(\quad 1)^{x z^{\prime}}\left|z^{\prime}\right\rangle
+\dfrac{1}{\sqrt{2^{n} /\left|C_{2}\right|}} \sum_{z^{\prime} \in C_{2}^{\frac{1}{2}}}(\quad 1)^{x z^{\prime}}\left|z^{\prime}\right\rangle
 $$
-纠错可通过再一次对每个量子比特应用 Hadamard 门而来完成；我们可以或者直接计算这些门的结果，或者注意到 $e_{2}=0$ 时式 $\frac{1}{\sqrt{2^{n}|| C_{2} \mid}} \sum_{z^{\prime} \in C_{2}^{\perp}}(-1)^{x z^{\prime}}\left|z^{\prime}+e_{2}\right\rangle$ 中的状态应用 Hadamard 门的作用；由于 Hadamard门是自可逆的，这就回到了 $e_{2}=0$ 时式 $\frac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}|x+y\rangle$ 中的状态：
+纠错可通过再一次对每个量子比特应用 Hadamard 门而来完成；我们可以或者直接计算这些门的结果，或者注意到 $e_{2}=0$ 时式 $\dfrac{1}{\sqrt{2^{n}|| C_{2} \mid}} \displaystyle \sum_{z^{\prime} \in C_{2}^{\perp}}(-1)^{x z^{\prime}}\left|z^{\prime}+e_{2}\right\rangle$ 中的状态应用 Hadamard 门的作用；由于 Hadamard 门是自可逆的，这就回到了 $e_{2}=0$ 时式 $\dfrac{1}{\sqrt{\left|C_{2}\right|}} \displaystyle \sum_{y \in C_{2}}(-1)^{(x+y) e_{2}}|x+y\rangle$ 中的状态：
 $$
-\frac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}|x+y\rangle
+\dfrac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}|x+y\rangle
 $$
 这就是初始的编码后的状态。
 
 CSS 码的一个重要应用是证明 Gilbert-Varshamov 界的量子版本，这个 Gilbert-Varshamov 界可保证好量子码的存在。这可陈述为，当 $n$ 变大达到极限时，对某个 $k$ 存在防止最多 $t$ 个量子比特上差错的 $[n, k]$ 量子码，使有：
 $$
-\frac{k}{n} \geqslant 1-2 H\left(\frac{2 t}{n}\right)
+\dfrac{k}{n} \geqslant 1-2 H\left(\dfrac{2 t}{n}\right)
 $$
 因此，假设人们并不试图填塞太多的量子比特 $k$ 到 $n$ 个量子比特码中，那么好的纠错量子码是存在的。CSS 码的 Gilbert-Varshamov 界的证明要比经典 GilbertVarshamov 界的证明更为复杂，原因是经典码 $C_{1}$ 和 $C_{2}$ 中引人的一些限制。
 
@@ -395,7 +391,7 @@ $$
 ### 稳定子体系
 稳定子体系的中心思路可通过一个例子容易地来说明，考虑双量子比特的 $\mathrm{EPR}$ 态：
 $$
-|\psi\rangle=\frac{|00\rangle+|11\rangle}{\sqrt{2}}
+|\psi\rangle=\dfrac{|00\rangle+|11\rangle}{\sqrt{2}}
 $$
 
 容易验证，这个状态满足恒等式 $X_{1} X_{2}|\psi\rangle=|\psi\rangle$ 和 $Z_{1} Z_{2}|\psi\rangle=|\psi\rangle$；我们认为，这个状态被算子 $X_{1} X_{2}$ 和 $Z_{1} Z_{2}$ 稳定。有点不太显然的是，状态 $|\psi\rangle$ 是用这些算子 $X_{1} X_{2}$ 和 $Z_{1} Z_{2}$ 稳定的惟一量子状态 (除了一个全局相位)。稳定子体系的基本思想是：比之显式地研究状态自身，许多量子状态可通过稳定它们的算子更容易地来描述。比之用状态向量描述，许多量子码 (包括 CSS 码和 Shor 码) 可用稳定子得到更为简洁的描述。甚至更为重要的是，量子比特上的差错、各种运算如 Hadamard 门、相位门和甚至受控非门，以及计算基中的测量，所有这一切都可以用稳定子形式来容易地描述。
@@ -465,7 +461,8 @@ $$
 你可能会认为，这并不令人印象深刻。但是设想，我们有 $n$ 个量子比特在一个状态中，其稳定子为 $\left\langle Z_{1}, Z_{2}, \cdots, Z_{n}\right\rangle$。容易看出，这就是状态 $|0\rangle^{\otimes n}$。将 Hadamard 门作用于 $n$ 个量子比特的每一个，随后的这个状态就具有稳定子 $\left\langle X_{1}, X_{2}, \cdots, X_{n}\right\rangle$；又容易看出，这只不过是个熟悉的状态，即所有计算基态的一个均匀叠加态。关于这个例子值得注意之处是，最后状态的通常 (状态向量) 描述需要确定 $2^{n}$ 个振幅，而由生成元 $\left\langle X_{1}, X_{2}, \cdots, X_{n}\right\rangle$ 所进行的描述与 $n$ 成线性。在稳定子体系之内，还有很多的可能性，包括受控非门的有效描述，它连同 Hadamard 门一起可能生成纠缠。考虑算子 $X_{1}, X_{2}, Z_{1}$ 和 $Z_{2}$ 在受控非门共轭作用下的行为。用 $U$ 表示以第 1 个量子比特作为控制和第 2 个量子比特作为目标的受控非门，有：
 
 $$
-U X_{1} U^{\dagger}=\left[\begin{array}{llll}
+\begin{aligned}
+U X_{1} U^{\dagger}&=\left[\begin{array}{llll}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 0 & 1 \\
@@ -480,19 +477,16 @@ U X_{1} U^{\dagger}=\left[\begin{array}{llll}
 0 & 1 & 0 & 0 \\
 0 & 0 & 0 & 1 \\
 0 & 0 & 1 & 0
-\end{array}\right]
-$$
 
-$$
-\begin{array}{l}
-=\left[\begin{array}{llll}
+\end{array}\right]\\
+&=\left[\begin{array}{llll}
 0 & 0 & 0 & 1 \\
 0 & 0 & 1 & 0 \\
 0 & 1 & 0 & 0 \\
 1 & 0 & 0 & 0
-\end{array}\right] \\
+\end{array}\right] 
 =X_{1} X_{2}
-\end{array}
+\end{aligned}
 $$
 
 类似的计算显示，$U X_{2} U^{+}=X_{2}, U Z_{1} U^{\dagger}=Z_{1}$ 和 $U Z_{2} U^{\dagger}=Z_{1} Z_{2}$。为看清楚双量子比特 Pauli 群中 $U$ 如何共轭作用到其他算子的，我们只需对已知结果取乘积。举例来说，为计算 $U X_{1} X_{2} U^{\dagger}$，我们观察到 $U X_{1} X_{2} U^{+}=U X_{1} U^{\dagger} U X_{2} U^{+}=\left(X_{1} X_{2}\right) X_{2}=X_{1}$，$Y$ 型 Pauli 矩阵可类似地进行处理，比如 $U Y_{2} U^{+}=\mathrm{i} U X_{2} Z_{2} U^{+}=\mathrm{i} U X_{2} U^{+} U Z_{2} U^{+}=$ i $X_{1}\left(Z_{1} Z_{2}\right)=Z_{1} Y_{2}$。
@@ -517,7 +511,7 @@ $$
 然而大多数量子门都不属于，两种有特殊意义而不属于正规化子的门是 $\pi / 8$ 门和 Toffoli 门。对于前者，简单计算可得：
 
 $$
-T Z T^{\dagger}=Z, \quad T X T^{\dagger}=\frac{X+Y}{\sqrt{2}}
+T Z T^{\dagger}=Z, \quad T X T^{\dagger}=\dfrac{X+Y}{\sqrt{2}}
 $$
 
 ### 稳定子体系的测量
@@ -534,8 +528,8 @@ $$
 
 $$
 \begin{array}{l}
-p(+1)=\operatorname{tr}\left(\frac{I+g}{2}|\psi\rangle\langle\psi|\right) \\
-p(-1)=\operatorname{tr}\left(\frac{I-g}{2}|\psi\rangle\langle\psi|\right)
+p(+1)=\operatorname{tr}\left(\dfrac{I+g}{2}|\psi\rangle\langle\psi|\right) \\
+p(-1)=\operatorname{tr}\left(\dfrac{I-g}{2}|\psi\rangle\langle\psi|\right)
 \end{array}
 $$
 
@@ -543,15 +537,15 @@ $$
 
 $$
 \begin{aligned}
-p(+1) &=\operatorname{tr}\left(\frac{I+g_{2}}{2} g_{1}|\psi\rangle\langle\psi|\right) \\
-&=\operatorname{tr}\left(g_{1} \frac{I-g}{2}|\psi\rangle\langle\psi|\right)
+p(+1) &=\operatorname{tr}\left(\dfrac{I+g_{2}}{2} g_{1}|\psi\rangle\langle\psi|\right) \\
+&=\operatorname{tr}\left(g_{1} \dfrac{I-g}{2}|\psi\rangle\langle\psi|\right)
 \end{aligned}
 $$
 
 应用迹的循环性质，将 $g_{1}$ 放到迹的右边末端，并利用  $g_{1}=g_{1}^{\dagger}$ 把它吸收到 $\langle\psi|$ 中，从而给出：
 
 $$
-p(+1)=\operatorname{tr}\left(\frac{I-g}{2}|\psi\rangle\langle\psi|\right)=p(-1)
+p(+1)=\operatorname{tr}\left(\dfrac{I-g}{2}|\psi\rangle\langle\psi|\right)=p(-1)
 $$
 
 因为 $p(+1)+p(-1)=1$，我们推出 $p(+1)=p(-1)=1 / 2$。设出现结果 $+1$，在这种情况下，系统的新状态为 $\left|\psi^{\dagger}\right\rangle \equiv(I+g)|\psi\rangle \mid \sqrt{2}$，它具有稳定子 $\left\langle g, g_{2}, \cdots, g_{n}\right\rangle$。类似地，如果出现结果 $-1$，以后的状态可由 $\left\langle-g, g_{2}, \cdots, g_{n}\right\rangle$ 来稳定。
@@ -581,13 +575,13 @@ $$
 令 $g_{1}, \cdots, g_{n-k}$ 为 $S$ 的一组生成元，使得：
 
 $$
-P=\frac{\prod_{l=1}^{n-k}\left(I+g_{l}\right)}{2^{n-k}}
+P=\dfrac{\displaystyle \prod_{l=1}^{n-k}\left(I+g_{l}\right)}{2^{n-k}}
 $$
 
 应用反对易性，给出：
 
 $$
-E_{j}^{\dagger} E_{k} P=\left(I-g_{1}\right) E_{j}^{\dagger} E_{k} \frac{\prod_{l=2}^{n-k}\left(I+g_{l}\right)}{2^{n-k}}
+E_{j}^{\dagger} E_{k} P=\left(I-g_{1}\right) E_{j}^{\dagger} E_{k} \dfrac{\prod_{l=2}^{n-k}\left(I+g_{l}\right)}{2^{n-k}}
 $$
 
 但是，由于 $\left(I+g_{1}\right)\left(I-g_{1}\right)=0$ 而有 $P\left(I-g_{1}\right)=0$，因此每当 $E_{j}^{\dagger} E_{k} \in G_{n}-N(S)$ 就有 $P E_{j}^{\dagger} E_{k} P=0$。这就导出，差错的集合 $\left\{E_{j}\right\}$ 满足量子纠错条件，因而构成一个可纠正的差错集合。
@@ -596,81 +590,88 @@ $$
 
 我们定义一个差错 $E \in G_{n}$ 的权重为在张量积中不等于单位阵的项数目。举例来说，$X_{1} Z_{4} Y_{8}$ 的权重为 3。一个稳定子码 $C(S)$ 的距离定义为 $N(S)-S$ 的元的最小权重。如果 $C(S)$ 是具有距离 $d$ 的一个 $[n, k]$ 码，那么我们说 $C(S)$ 是一个 $[n, k, d]$ 稳定子码。根据定理内容，如同在经典码中那样，一个具有距离至少为 $2 t+1$ 的码必能来纠正任意 $t$ 量子比特上的任意差错。
 
-
-
 ## Surface code
 
 Surface code 是一种量子纠错码，属于 stabilizer code 的一种，它可以定义在任何一种表面的格点上，比如说： $g$-torus、平面，具有很好的局部性，尤其对于 Pauli error （由每个 physical qubit 上的 $X$, $Z$ 错误生成）具有简单直观的纠错策略。接下来我们将主要介绍平面码和圆环码，在这些编码上的 $X_L$、$Z_L$、$CNOT$ 算子的构造，以及测量和初始化的方法。
 
-
-
 ### Surface code
 
-Surface code 的构造如下图所示，其中白色圆点表示 data qubit，黑色圆点表示 measure qubit，measure qubit 又分为两种，用 $X$ 和 $Z$ 表示，它们与周围的 4 个 data qubit 连接（在边界处的是 3 个）
+Surface code 的构造如下图所示，白色圆点表示 data qubit，黑色圆点表示 measure qubit，measure qubit 又分为两种，用 $X$ 和 $Z$ 表示，它们与周围的 4 个 data qubit 连接（在边界处的是 3 个）
 
-![image-20220809102025756](.\surface-code\pic\surface-code.png)
+<div align=center>
+<img width="450" src=".\surface-code\pic\surface-code.png"/>
+</div>
+<div align=center>Surface code 构造示意图<br/></div>
 
 可以看到这两种连接分别表示在 $Z_a Z_b Z_c Z_d$ 和 $X_a X_b X_c X_d$ 这两个 observable 上进行测量，这些 observable 正是 surface code 所对应的稳定子群 $S$ 的生成元，我们可以验证按照上图的排布，这些 observable 都是可交换的。
 
 仅考虑 data qubit 的状态，令 $k$ 是上述 measure qubit 的数量，我们把在上述测量作用中保持不变的状态称之为静止态，对于 $2^k$ 个可能的不同测量结果，即 $\{-1, 1\}^k$，静止态可能生活在其中任何一个测量结果所定义的子空间中。具体来说，假设在某个 measure qubit 上进行测量，等价于在周围的 data qubit 上做测量 $Z_a Z_b Z_c Z_d$ ，得到测量结果 $Z_{abcd}$，也就是说 data qubit 的状态恰好是算子 $Z_a Z_b Z_c Z_d$ 的对应于特征值 $Z_{abcd}$ 的特征向量，则显然有 $Z_{abcd}\cdot Z_a Z_b Z_c Z_d\in S$。用该方法得到稳定子群 $S$ 后，就得到对应的 $V_S$，所谓静止态就生活在 $V_S$ 中，显然这样的 $V_S$ 有 $2^k$ 个。一般来说，我们不会事先选定一个特定的 $V_S$ 作为我们的编码空间，而是在经过多轮测量得到一个静止态后将它所生活的空间当做我们的编码空间，进而得到对应的 stabilizer code。
 
-
-
 ### 单比特错误
 
-首先，我们可以考虑在一个data qubit 上面的 $X$ 错误，一旦发生，则和其相邻的 $Z$ measure qubit 的测量结果都会发生改变，因此我们可以定位这样的错误，对于 $Y$ 错误，也是类似的。
+首先，我们可以考虑在一个 data qubit 上面的 $X$ 错误，一旦发生，则和其相邻的 $Z$ measure qubit 的测量结果都会发生改变，因此我们可以定位这样的错误，对于 $Y$ 错误，也是类似的。
 
 当然，在测量过程中发生的错误也需要考虑，但是这种错误往往只会改变一个测量结果。每一轮测量时的 measure qubit 都要初始化，所以可以视每轮测量的错误是独立的，若假设发生错误的概率很低，我们可以进行多轮测量，则很大概率测量结果就会回归正常，因此对于测量错误我们也可以检测。
 
-
-
 ### $X_L$ 与 $Z_L$ operator
 
-$X_L$ 和 $Z_L$ 算子可以按照下图定义，其中 $X_L$ 是对蓝色线上的 data qubit 作用 $X$ 算子，蓝色线连接平面的由 $X$ measure qubit 组成的边界，称为**粗糙边界**；而 $Z_L$ 则是对红色线上的 data qubit 作用 $Z$ 算子，连接 $Z$ measure qubit 边界，称为**光滑边界**。可以验证，对于以下图方式编码的logic qubit，这样定义的逻辑算子确实满足$X_L$ 和 $Z_L$ 的要求，即：1）自身共轭对称；2）互相反交换；3）是 $S$ 的中心化子。
+$X_L$ 和 $Z_L$ 算子可以按照下图定义，其中 $X_L$ 是对蓝色线上的 data qubit 作用 $X$ 算子，蓝色线连接平面的由 $X$ measure qubit 组成的边界，称为**粗糙边界**；而 $Z_L$ 则是对红色线上的 data qubit 作用 $Z$ 算子，连接 $Z$ measure qubit 边界，称为**光滑边界**。可以验证，对于以下图方式编码的 logic qubit，这样定义的逻辑算子确实满足$X_L$ 和 $Z_L$ 的要求，即：1）自身共轭对称；2）互相反交换；3）是 $S$ 的中心化子。
 
-![image-20220809121327207](.\surface-code\pic\single-qubit-operator.png)
+<div align=center>
+<img width="450" src=".\surface-code\pic\single-qubit-operator.png"/>
+</div>
+<div align=center>X<sub>L</sub> 与 Z<sub>L</sub> 示意图<br/></div>
 
-**唯一性** 可以注意到，还有其他定义方式，比如说：可以将蓝色线换成紫色线，但是这样得到的 $X_L' = (X_2 X_{10}X_{11}X_{12})\cdot X_L$ ，只相差一个 $S$ 中的元素（不考虑符号），这意味着在stabilizer code 的子空间中，这两个算子只相差一个 global phase ，即测量结果 $X_{2, 10, 11, 12}$。事实上，所有的合法的逻辑算子在这种意义下都是等价的。
+**唯一性** 可以注意到，还有其他定义方式，比如说：可以将蓝色线换成紫色线，但是这样得到的 $X_L' = (X_2 X_{10}X_{11}X_{12})\cdot X_L$ ，只相差一个 $S$ 中的元素（不考虑符号），这意味着在 stabilizer code 的子空间中，这两个算子只相差一个 global phase ，即测量结果 $X_{2, 10, 11, 12}$。事实上，所有的合法的逻辑算子在这种意义下都是等价的。
 
 一种观点是，我们可以把 $H$ 分解为 $Q\otimes L$ ，每一个静止态都可以表示为 $|Q\rangle |q_L\rangle$ ，$S$ 中的元素只作用在空间 $Q$ 上，且保持 $|Q\rangle$ 不变，而我们刚刚定义的逻辑算子则作用在 $|q_L\rangle$ 上。
 
-
-
 ### 其他 logical qubit 的表示方式
 
-按照上面的表示方式，如果我们使用 $N\times N$ 的 data qubit 晶格表示一个 qubit，则每个逻辑算子均要同时作用在 $N$ 个physical qubits 上，十分麻烦。因此有如下的构造方式，我们可以通过关闭某些 measure qubit 来在平面上形成“洞”，通过这些“洞”我们可以在局部实现逻辑算子，不过这样也就意味着对应的surface code 的距离 $d$ 的减小。
+按照上面的表示方式，如果我们使用 $N\times N$ 的 data qubit 晶格表示一个 qubit，则每个逻辑算子均要同时作用在 $N$ 个 physical qubits 上，十分麻烦。因此有如下的构造方式，我们可以通过关闭某些 measure qubit 来在平面上形成“洞”，通过这些“洞”我们可以在局部实现逻辑算子，不过这样也就意味着对应的 surface code 的距离 $d$ 的减小。
 
-![image-20220809141104087](.\surface-code\pic\hole-1.png)
+<div align=center>
+<img width="450" src=".\surface-code\pic\hole-1.png"/>
+</div>
+<div align=center>X<sub>L</sub> 与 Z<sub>L</sub> 基于平面空洞局部实现逻辑算子<br/></div>
 
-这里我们关闭了一个 $Z$ measure qubit，称为 $Z$-cut qubit。可以验证，图中蓝色线和红色线对应的 $X$-chain 和 $Z$-chain 恰好定义了 $X_L, Z_L$。当然我们可以注意到，如果晶格的边界都是同一种类型，即使关闭一个measure qubit 也不能创造出新的自由度，这是因为此刻 measure qubit 的数量和 data qubit 的数量一样，没有多余的自由度。
+这里我们关闭了一个 $Z$ measure qubit，称为 $Z$-cut qubit。可以验证，图中蓝色线和红色线对应的 $X$-chain 和 $Z$-chain 恰好定义了 $X_L, Z_L$。当然我们可以注意到，如果晶格的边界都是同一种类型，即使关闭一个 measure qubit 也不能创造出新的自由度，这是因为此刻 measure qubit 的数量和 data qubit 的数量一样，没有多余的自由度。
 
 一种变体是，开两个“洞”，称之为 double $Z$-cut qubit，带来了额外的 4 个自由度，不过我们只对在其中的两个自由度上的作用感兴趣（可以将其他两个自由度并入 $|Q\rangle$ 中），按照下图的线来定义逻辑算子。一般选择其中一个红圈来定义 $Z_L$，用连接两个红圈的蓝线来定义 $X_L$。
 
-![image-20220809142821780](.\surface-code\pic\hole-2.png)
+<div align=center>
+<img width="400" src=".\surface-code\pic\hole-2.png"/>
+</div>
+<div align=center>X<sub>L</sub> 与 Z<sub>L</sub> 上方逻辑算子的双洞变体<br/></div>
 
 这种构造对于我们后续通过 topological braid transformation 实现 $CNOT$ 十分重要。
-
-
 
 ### $X_L$ 和 $Z_L$ 的软件实现
 
 考虑到实际的量子电路中，一般只含有 $H, X, Z, CNOT$ 这些门，最后在每个 qubit 处进行测量。注意到 $X, Z$ 算子和这些算子具有良好的交换性或者反交换性，所以我们可以不必真的对 qubit 实施 $X_L$ 或者 $Z_L$，而是可以通过软件记录这些操作，然后通过交换性将这些影响一直沿着电路传递到测量前，然后我们根据这些影响来矫正测量的结果。
 
-![image-20220809143711473](.\surface-code\pic\software.png)
-
-
+<div align=center>
+<img width="400" src=".\surface-code\pic\software.png"/>
+</div>
+<div align=center>X<sub>L</sub> 与 Z<sub>L</sub> 的软件实现示意图<br/></div>
 
 ### 初始化与测量
 
 #### 初始化
 
-对于$X$-cut qubit，初始化又分为“难”和“易”，容易的是准备 $|+_L\rangle$ 和 $|-_L\rangle$ 状态，困难的是准备 $|g_L\rangle$ 和 $|e_L\rangle$ 状态。前者只需要把每个data qubit置为$|+\rangle$ 或者 $|-\rangle$ 即可，或者采用下图的方式，先开启所有的 measure qubit，进行数轮测量，然后关闭两个 $X$ measure qubit ，则$X_L$ 所围绕的 measure qubit 的上一次测量结果正是此时logical qubit的状态，$+1$ 对应 $|+_L\rangle$ ，$-1$ 对应 $|-_L\rangle$。我们可以适当应用 $Z_L$ 得到想要的状态。
+对于 $X$-cut qubit，初始化又分为“难”和“易”，容易的是准备 $|+_L\rangle$ 和 $|-_L\rangle$ 状态，困难的是准备 $|g_L\rangle$ 和 $|e_L\rangle$ 状态。前者只需要把每个 data qubit 置为 $|+\rangle$ 或者 $|-\rangle$ 即可，或者采用下图的方式，先开启所有的 measure qubit，进行数轮测量，然后关闭两个 $X$ measure qubit ，则$X_L$ 所围绕的 measure qubit 的上一次测量结果正是此时 logical qubit 的状态，$+1$ 对应 $|+_L\rangle$ ，$-1$ 对应 $|-_L\rangle$。我们可以适当应用 $Z_L$ 得到想要的状态。
 
-![image-20220809145104070](.\surface-code\pic\easy-prepare.png)
+<div align=center>
+<img width="300" src=".\surface-code\pic\easy-prepare.png"/>
+</div>
+<div align=center>第一种初始化方法的示意图<br/></div>
 
-后者的准备可以通过一个 Hadamard gate 实现，但是logical Hadamard gate 本身实现就比较复杂，下面我们介绍另一种方法。首先关闭部分的 measure qubit 如 (b) 所示，注意到 “洞”的边界上的 $Z$ measure qubit 也只连接 3 个 data qubit，然后对这几个被孤立的 data qubit 进行 $M_Z$ 测量，与其他活跃的 measure qubit 的测量一起进行，这主要是为了在初始化阶段保持纠错能力。然后将 3 个 data qubit 都设置为 $|g_L\rangle$，恢复部分的 measure qubit 如 (d) 所以，进行几轮测量后，则可以得到对应于 $Z_L$ 特征值 $+1$ 的静止态。
+后者的准备可以通过一个 Hadamard gate 实现，但是 logical Hadamard gate 本身实现就比较复杂，下面我们介绍另一种方法。首先关闭部分的 measure qubit 如 (b) 所示，注意到 “洞”的边界上的 $Z$ measure qubit 也只连接 3 个 data qubit，然后对这几个被孤立的 data qubit 进行 $M_Z$ 测量，与其他活跃的 measure qubit 的测量一起进行，这主要是为了在初始化阶段保持纠错能力。然后将 3 个 data qubit 都设置为 $|g_L\rangle$，恢复部分的 measure qubit 如 (d) 所以，进行几轮测量后，则可以得到对应于 $Z_L$ 特征值 $+1$ 的静止态。
 
-![image-20220809145859221](.\surface-code\pic\hard-prepare.png)
+<div align=center>
+<img width="300" src=".\surface-code\pic\hard-prepare.png"/>
+</div>
+<div align=center>另一种初始化方法的示意图<br/></div>
 
 对于这个过程，可以有这样的解释：设置孤立的 data qubit 后，系统状态为 $|\phi\rangle = |ggg\rangle |\phi'\rangle$，是$Z_L$ 对应于特征值 $+1$ 的特征向量，但是却并非静止态。考虑到$Z_L$ 和所有的 $X$ measure operator 都是可交换的，所以它们的特征空间有一组共同的基，这样的话 $|\phi\rangle$ 可以看作是一些静止态的叠加态，且这些静止态都对应于 $Z_L$ 的$+1$ 特征值，进行一轮测量后会把系统状态投影到其中的一个静止态上。
 
@@ -678,44 +679,53 @@ $X_L$ 和 $Z_L$ 算子可以按照下图定义，其中 $X_L$ 是对蓝色线上
 
 测量过程几乎就是初始化过程的“逆过程”，对应于测量的基也分为“难”和“易”。以 $X$-cut qubit 为例，容易的测量只需要开启 $X_L$ 所围绕的 $X$ measure qubit，然后报告该处的测量结果即可，而困难的测量则需要再次如(b)一样孤立出 data qubit，然后分别进行 $M_Z$，最后恢复原状，进行测量，测量的结果就是 $Z_{1,2,3} = Z_1 Z_2 Z_3$。
 
-
-
 ### 更大的距离
 
-通过制造更大的洞，我们可以增大距离$d$，从而提高 surface code 的抗干扰能力，而它的逻辑算子、初始化、测量，都可以仿照上面所说的进行。以下图为例，它将 $d$ 从 4 增加到了 8。而在 $Z_L$ 上的测量则可以通过对中间 4 个孤立qubit进行 $M_Z$ 测量并且将结果相乘。
+通过制造更大的洞，我们可以增大距离 $d$，从而提高 surface code 的抗干扰能力，而它的逻辑算子、初始化、测量，都可以仿照上面所说的进行。以下图为例，它将 $d$ 从 4 增加到了 8。而在 $Z_L$ 上的测量则可以通过对中间 4 个孤立 qubit 进行 $M_Z$ 测量并且将结果相乘。
 
-![image-20220809153555225](.\surface-code\pic\larger-hole.png)
+<div align=center>
+<img width="400" src=".\surface-code\pic\larger-hole.png"/>
+</div>
+<div align=center>通过制造更大的洞，增大距离 d<br/></div>
 
 ### 移动 qubit
 
-我们可以将移动 qubit 的过程分为两部分，一部分是物理上的操作，一部分是logical operator的变化。首先物理上，第一步首先进行一次测量，在下一次测量前关闭部分测量，如(b)所示，然后进行一轮测量，包括测量$X_6$，然后开启一部分测量，如(c)所示，再进行一轮测量即可。
+我们可以将移动 qubit 的过程分为两部分，一部分是物理上的操作，一部分是 logical operator的变化。首先物理上，第一步首先进行一次测量，在下一次测量前关闭部分测量，如(b)所示，然后进行一轮测量，包括测量$X_6$，然后开启一部分测量，如(c)所示，再进行一轮测量即可。
 
-![image-20220809160726155](.\surface-code\pic\move-qubit.png)
+<div align=center>
+<img width="400" src=".\surface-code\pic\move-qubit.png"/>
+</div>
+<div align=center>移动 qubit 示意图<br/></div>
 
-注意到在这个过程中的logical operator的变化，从(a)到(b)的过程中，有如下变化：
+注意到在这个过程中的 logical operator 的变化，从(a)到(b)的过程中，有如下变化：
+
 $$
 \begin{aligned}
 Z_L:=Z_3 Z_4 Z_5 Z_6 &\rightarrow Z_L^e:=Z_3 Z_5 Z_9 Z_8 Z_7 Z_4 \\
 X_L:= X_1 X_2 X_3 &\rightarrow X_L':= X_1 X_2 X_3 X_4
 \end{aligned}
 $$
+
 在(b)到(c)的过程中，有如下变化：
+
 $$
 Z_L^e \rightarrow Z_L':=Z_6 Z_7 Z_8 Z_9
 $$
+
 最后得到的 $X_L'$ 和 $Z_L'$ 就是新的系统上的逻辑算子。
 
-但是注意到，如果 $X_6$ 和变化中涉及到的两个 $Z$ measure 结果的乘积不为 $+1$，则新得到的算子和原来的算子在符号上会有不同。这里我们可以采用 Heisenberg 的观点：对于变换 $|\phi\rangle \rightarrow U|\phi\rangle$，我们可以视为状态保持不变，但是所有之后作用在上面的算子 $A$ 有变换 $A\rightarrow U^\dagger A U$。但是反过来看，如果所有的operator都被一个 $U$ 共轭作用了，则可以认为算子不变，但是状态受到一个$U$ 作用。这样的话，由于 $-X = Z^\dagger X Z, -Z = X^\dagger Z X$，我们可以看作是状态被如下作用：
+但是注意到，如果 $X_6$ 和变化中涉及到的两个 $Z$ measure 结果的乘积不为 $+1$，则新得到的算子和原来的算子在符号上会有不同。这里我们可以采用 Heisenberg 的观点：对于变换 $|\phi\rangle \rightarrow U|\phi\rangle$，我们可以视为状态保持不变，但是所有之后作用在上面的算子 $A$ 有变换 $A\rightarrow U^\dagger A U$。但是反过来看，如果所有的 operator 都被一个 $U$ 共轭作用了，则可以认为算子不变，但是状态受到一个$U$ 作用。这样的话，由于 $-X = Z^\dagger X Z, -Z = X^\dagger Z X$，我们可以看作是状态被如下作用：
 $$
 |\psi\rangle \rightarrow X_L'^{P_Z}Z_L'^{P_X}|\psi'\rangle
 $$
 其中 $|\psi'\rangle$ 是我们想要得到的状态，也即和原来的状态 $|\psi\rangle$ 相比在新的$X_L$定义下有相同的状态。
 
-上面介绍了如何移动单个qubit，移动多个qubit和这个类似，逻辑算子也可以仿照上面进行改变，同时也要注意算子的符号变化和测量结果的关系：
+上面介绍了如何移动单个 qubit，移动多个 qubit 和这个类似，逻辑算子也可以仿照上面进行改变，同时也要注意算子的符号变化和测量结果的关系：
 
-![image-20220809162926027](.\surface-code\pic\move-multiple-qubits.png)
-
-
+<div align=center>
+<img width="400" src=".\surface-code\pic\move-multiple-qubits.png"/>
+</div>
+<div align=center>移动多个 qubit 示意图<br/></div>
 
 ### Topological braid transformation
 
@@ -723,73 +733,102 @@ $$
 
 有了上面定义的移动多个 qubit 的方法后，我们可以通过移动两次，来让一个 qubit 绕一个圈：
 
-![image-20220809202933486](.\surface-code\pic\single-braid-1.png)
+<div align=center>
+<img width="800" src=".\surface-code\pic\single-braid-1.png"/>
+</div>
+<div align=center>qubit 绕圈的第一次移动<br/></div>
 
-![image-20220809203005909](.\surface-code\pic\single-braid-2.png)
+<div align=center>
+<img width="800" src=".\surface-code\pic\single-braid-2.png"/>
+</div>
+<div align=center>qubit 绕圈的第二次移动<br/></div>
 
 我们发现经过两步移动后，新的$X_L$ 和 $Z_L$ 和原来相比几乎没有改变，只是符号可能由于测量结果的不同而有所改变，我们需要把它表示成 logical qubit 的改变。
 
 #### 两个 qubit
 
-如果第一个logical qubit 是$Z$-cut，第二个是 $X$-cut，则我们令第一个logical qubit 按照下图的方式绕着第二个qubit一圈，我们将看到这样的操作，在不考虑逻辑算子的符号改变的情况下（我们可以通过对状态进行变换来修正这一点）与$CNOT$ 是等价的。实际上，我们只需要检查该变换在 $I_{L, 1}\otimes X_{L, 2}, I_{L, 1}\otimes Z_{L, 2}, X_{L, 1}\otimes I_{L, 2}, Z_{L, 1}\otimes I_{L, 2}$ 上的作用即可，这并不困难，按图索骥即可：
+如果第一个 logical qubit 是 $Z$-cut，第二个是 $X$-cut，则我们令第一个 logical qubit 按照下图的方式绕着第二个 qubit 一圈，我们将看到这样的操作，在不考虑逻辑算子的符号改变的情况下（我们可以通过对状态进行变换来修正这一点）与$CNOT$ 是等价的。实际上，我们只需要检查该变换在 $I_{L, 1}\otimes X_{L, 2}, I_{L, 1}\otimes Z_{L, 2}, X_{L, 1}\otimes I_{L, 2}, Z_{L, 1}\otimes I_{L, 2}$ 上的作用即可，这并不困难，按图索骥即可：
 
-![image-20220809204654305](.\surface-code\pic\cnot-1.png)
+<div align=center>
+<img width="800" src=".\surface-code\pic\cnot-1.png"/>
+</div>
+<div align=center>两个 qubit 同时移动第一步<br/></div>
 
-![image-20220809204728816](.\surface-code\pic\cnot-2.png)
+<div align=center>
+<img width="800" src=".\surface-code\pic\cnot-2.png"/>
+</div>
+<div align=center>两个 qubit 同时移动第二步<br/></div>
 
-![image-20220809204806699](.\surface-code\pic\cnot-3.png)
+<div align=center>
+<img width="400" src=".\surface-code\pic\cnot-3.png"/>
+</div>
+<div align=center>两个 qubit 同时移动第三步<br/></div>
 
-上面的操作虽然构成了$CNOT$，但是却要求作用在不同类型的logical qubit上，使用以下电路可以纠正这个问题：
+上面的操作虽然构成了 $CNOT$，但是却要求作用在不同类型的 logical qubit 上，使用以下电路可以纠正这个问题：
 
-![image-20220809205436427](.\surface-code\pic\same-type.png)
-
-
+<div align=center>
+<img width="800" src=".\surface-code\pic\same-type.png"/>
+</div>
+<div align=center>通过此电路简化对 qubit 的类型要求<br/></div>
 
 ### Hadamard gate
 
 通过 surface code 实现 Hadamard gate 十分复杂，因此只是简述过程：首先通过关闭部分 measure qubit 隔离出要作用的 logical qubit，然后通过乘上 $S$ 中的元素来改变$Z_L$ 的表示（此处需要记录或者处理符号改变）；
 
-![image-20220809211116608](.\surface-code\pic\hgate-1.png)
+<div align=center>
+<img width="600" src=".\surface-code\pic\hgate-1.png"/>
+</div>
+<div align=center>surface code 实现 Hadamard gate (1)<br/></div>
 
-然后将黑色虚线框外的measure qubit也关闭，但是对于环中的data qubit还是需要进行$M_Z$来保证纠错功能；
+然后将黑色虚线框外的 measure qubit 也关闭，但是对于环中的 data qubit 还是需要进行$M_Z$来保证纠错功能；
 
-![image-20220827084804156](.\surface-code\pic\hgate-2.png)
+<div align=center>
+<img width="600" src=".\surface-code\pic\hgate-2.png"/>
+</div>
+<div align=center>surface code 实现 Hadamard gate (2)<br/></div>
 
-对框中的所有data qubit作用一个 Hadamard gate，这会导致 $X_i$ 和 $Z_i$ 交换，形成如(e)不能对齐的情况，但是可以通过和左上相邻的qubit进行swap操作来再次对齐；
+对框中的所有 data qubit 作用一个 Hadamard gate，这会导致 $X_i$ 和 $Z_i$ 交换，形成如(e)不能对齐的情况，但是可以通过和左上相邻的 qubit 进行 swap 操作来再次对齐；
 
-![image-20220809211517406](.\surface-code\pic\hgate-3.png)
+<div align=center>
+<img width="600" src=".\surface-code\pic\hgate-3.png"/>
+</div>
+<div align=center>surface code 实现 Hadamard gate (3)<br/></div>
 
-然后就是逐步恢复刚刚被关闭的measure qubit，然后通过符号调整使得逻辑算子和作用前一样。
+然后就是逐步恢复刚刚被关闭的 measure qubit，然后通过符号调整使得逻辑算子和作用前一样。
 
-![image-20220809211629071](.\surface-code\pic\hgate-4.png)
+<div align=center>
+<img width="600" src=".\surface-code\pic\hgate-4.png"/>
+</div>
+<div align=center>surface code 实现 Hadamard gate (4)<br/></div>
 
-![image-20220809211700501](.\surface-code\pic\hgate-5.png)
+<div align=center>
+<img width="600" src=".\surface-code\pic\hgate-5.png"/>
+</div>
+<div align=center>surface code 实现 Hadamard gate (5)<br/></div>
 
 此外，如果可以制备一些特定的量子态，我们可以利用上面已经实现的算子来实现 $S_L$ 和 $T_L$，这样就得到了一个 universal set，而量子态的制备则可以使用称为 state distillation 的技术，可以参考：*Surface codes: Towards practical large-scale quantum computation*。
-
-
 
 ###  一些变体
 
 #### planar code
 
-我们刚刚定义大部分操作都是基于带缺陷（$X$-cut 或者 $Y$-cut）的 surface code，但实际上我们不需要缺陷也可以定义 $CNOT$ gate，只需要引入新的操作 merge 和 split。这里的记号与刚刚稍有不同，这里大个的格点表示data qubit，小个的格点表示measure qubit，其中位于节点处的是 $Z$ measure qubit，位于面心的是 $X$ measure qubit。
+我们刚刚定义大部分操作都是基于带缺陷（$X$-cut 或者 $Y$-cut）的 surface code，但实际上我们不需要缺陷也可以定义 $CNOT$ gate，只需要引入新的操作 merge 和 split。这里的记号与刚刚稍有不同，这里大个的格点表示 data qubit，小个的格点表示 measure qubit，其中位于节点处的是 $Z$ measure qubit，位于面心的是 $X$ measure qubit。
 
 **Lattice merging**
 
-对于两个分离的logical qubit，我们可以按照如下的方式将其粗糙边界融合起来，形成一个新的logical qubit。为了方便起见，我们可以事先假设这两个 logical qubit 的 $X_L$ 定义在即将融合的边界上，$Z_L$ 也在同一个水平线上。
+对于两个分离的 logical qubit，我们可以按照如下的方式将其粗糙边界融合起来，形成一个新的logical qubit。为了方便起见，我们可以事先假设这两个 logical qubit 的 $X_L$ 定义在即将融合的边界上，$Z_L$ 也在同一个水平线上。
 
-首先，将缝合处的新的 data qubit 设置为 $|g\rangle$，然后以下图的方式进行连接，得到一个新的logical qubit，然后经过一轮的测量。由于我们实现设定新的 data qubit 为 $|g\rangle$，所以所有的 $Z$ measure 的结果并不会改变，与此同时我们记录缝合处的 $X$ measure 的结果的乘积，可以看出，这样的操作等效于对 $X_{L,1}\otimes X_{L, 2}$ 这个 observable 的测量。根据测量结果$M$，若融合的两个状态分别是$|\psi\rangle$ 和 $|\phi\rangle$，则测量后的结果是：
+首先，将缝合处的新的 data qubit 设置为 $|g\rangle$，然后以下图的方式进行连接，得到一个新的logical qubit，然后经过一轮的测量。由于我们实现设定新的 data qubit 为 $|g\rangle$，所以所有的 $Z$ measure 的结果并不会改变，与此同时我们记录缝合处的 $X$ measure 的结果的乘积，可以看出，这样的操作等效于对 $X_{L,1}\otimes X_{L, 2}$ 这个 observable 的测量。根据测量结果$M$，若融合的两个状态分别是 $|\psi\rangle$ 和 $|\phi\rangle$，则测量后的结果是：
 $$
-\frac{1}{\sqrt{2}}(|\psi\rangle|\phi\rangle + (-1)^M |\bar{\psi}\rangle|\bar{\phi}\rangle)
+\dfrac{1}{\sqrt{2}}(|\psi\rangle|\phi\rangle + (-1)^M |\bar{\psi}\rangle|\bar{\phi}\rangle)
 $$
 其中，$|\bar{A}\rangle = X_L |A\rangle$。
 
 再考虑如何将融合后的状态映射回到融合前的，我们观察到新的 $Z_L'$ 恰好是原来的 $Z_{L,1}, Z_{L,2}$ 的乘积，因而对应于融合后的 $|g_L\rangle$ ，必然对应融合前的 $|gg_L\rangle, |ee_L\rangle$ 的线性组合，同时考虑到新的 $X_L'$ 定义为其中一个 logical qubit 原来的 $X_L$ ，这这样的映射与测量结果 $M$ 有关，具体来说是：
 $$
 \begin{aligned}
-|g_L\rangle &\rightarrow \frac{1}{\sqrt{2}}(|gg_L\rangle + (-1)^M |ee_L\rangle) \\
-|e_L\rangle &\rightarrow \frac{1}{\sqrt{2}}(|ge_L\rangle + (-1)^M |eg_L\rangle) 
+|g_L\rangle &\rightarrow \dfrac{1}{\sqrt{2}}(|gg_L\rangle + (-1)^M |ee_L\rangle) \\
+|e_L\rangle &\rightarrow \dfrac{1}{\sqrt{2}}(|ge_L\rangle + (-1)^M |eg_L\rangle) 
 \end{aligned}
 $$
 所以融合之后的效果等效于，令 $|\psi\rangle = \alpha |g_L\rangle + \beta |e_L\rangle$：
@@ -798,22 +837,25 @@ $$
 $$
 类似的，在光滑边界的融合效果为也可以写成同样形式，只不过在 $|+_L\rangle, |-_L\rangle$ 下分解。
 
-![image-20220809224554955](.\surface-code\pic\merge.png)
+<div align=center>
+<img width="600" src=".\surface-code\pic\merge.png"/>
+</div>
+<div align=center>分离的 qubit 边界融合<br/></div>
 
 **Lattice spliting**
 
-这次我们考虑在光滑边界上做分割，这操作十分简单，我们先将两个平面分开，然后在连接处的data qubit执行 $M_X$，使得剩下的状态和这3个离开的data qubit 解除纠缠。若是考虑到分开前后 $X_L$ 和 $Z_L$ 的作用，我们有如下的映射：
+这次我们考虑在光滑边界上做分割，这操作十分简单，我们先将两个平面分开，然后在连接处的 data qubit 执行 $M_X$，使得剩下的状态和这3个离开的 data qubit 解除纠缠。若是考虑到分开前后 $X_L$ 和 $Z_L$ 的作用，我们有如下的映射：
 $$
 \alpha |g_L\rangle + \beta |e_L\rangle \rightarrow \alpha |gg_L\rangle + \beta |ee_L\rangle
 $$
 **$CNOT$**
 
-假设 $|C\rangle$ 是控制 qubit，$|T\rangle$ 是目标 qubit，$|INT\rangle$ 是辅助 qubit，初始化为 $|+_L\rangle$。首先让$|T\rangle$ 和  $|INT\rangle$ 做一个光滑的融合，得到：
+假设 $|C\rangle$ 是控制 qubit，$|T\rangle$ 是目标 qubit，$|INT\rangle$ 是辅助 qubit，初始化为 $|+_L\rangle$。首先让 $|T\rangle$ 和  $|INT\rangle$ 做一个光滑的融合，得到：
 
 $$
 \begin{aligned}
 |C\rangle merge |INT\rangle &\rightarrow \bar{\alpha}|+_L\rangle + (-1)^M \bar{\beta} |+_L\rangle \\
-&= \frac{1}{\sqrt{2}}(\bar{\alpha} + (-1)^M \bar{\beta})|g_L\rangle + \frac{1}{\sqrt{2}}(\bar{\alpha} - (-1)^M \bar{\beta})|e_L\rangle
+&= \dfrac{1}{\sqrt{2}}(\bar{\alpha} + (-1)^M \bar{\beta})|g_L\rangle + \dfrac{1}{\sqrt{2}}(\bar{\alpha} - (-1)^M \bar{\beta})|e_L\rangle
 \end{aligned}
 $$
 根据测量结果 $M$ 适当地做 qubit flip，可以得到 $|C\rangle merge |INT\rangle \rightarrow\alpha |g_L\rangle + \beta |e_L\rangle$。
@@ -832,35 +874,48 @@ $$
 
 **状态注入**
 
-若能将一个 physical qubit 初始化为任意状态，就可以将 planar code 编码的 logical qubit 编码为任何一种状态，这种技术被称为“状态注入”。如下图所示，(a)中先将中间的 data qubit 初始化为 $\alpha |g\rangle + \beta |e\rangle$，其余初始化为 $|g\rangle$；(b)中使用$CNOT$ gate 和上下相邻的 data qubit形成纠缠态 $\alpha|ggg\rangle + \beta |eee\rangle$；注意到此时的状态在$Z_L$特征空间下的分解，利用和之前的困难初始化类似的分析，我们知道在(c)中开启所有 measure qubit 进行一轮测量，最后得到某一个静止态，并且对应于该测量结果下的 $\alpha|g_L\rangle + \beta |e_L\rangle$；如果需要扩大，只需要像(d)(e)那样把额外的measure qubit和data qubit连接上来，全部初始化为 $|g\rangle$，然后进行一轮测量。
+若能将一个 physical qubit 初始化为任意状态，就可以将 planar code 编码的 logical qubit 编码为任何一种状态，这种技术被称为“状态注入”。如下图所示，(a)中先将中间的 data qubit 初始化为 $\alpha |g\rangle + \beta |e\rangle$，其余初始化为 $|g\rangle$；(b)中使用 $CNOT$ gate 和上下相邻的 data qubit形成纠缠态 $\alpha|ggg\rangle + \beta |eee\rangle$；注意到此时的状态在 $Z_L$ 特征空间下的分解，利用和之前的困难初始化类似的分析，我们知道在(c)中开启所有 measure qubit 进行一轮测量，最后得到某一个静止态，并且对应于该测量结果下的 $\alpha|g_L\rangle + \beta |e_L\rangle$；如果需要扩大，只需要像(d)(e)那样把额外的 measure qubit 和 data qubit 连接上来，全部初始化为 $|g\rangle$，然后进行一轮测量。
 
-![image-20220810083943043](.\surface-code\pic\state-injection.png)
+<div align=center>
+<img width="500" src=".\surface-code\pic\merge.png"/>
+</div>
+<div align=center>分离的 qubit 边界融合<br/></div>
 
 **Hadamard gate**
 
-单纯对所有的data qubit采用一个Hadamard 变换将会让我们得到正确的结果，但是由于$X$ 和 $Z$ 的对换，我们发现 planar code 旋转了 $90\degree$ ，如果物理实现上这些晶格可以移动，那么只需要再旋转回来。
+单纯对所有的 data qubit 采用一个 Hadamard 变换将会让我们得到正确的结果，但是由于 $X$ 和 $Z$ 的对换，我们发现 planar code 旋转了 $90\degree$ ，如果物理实现上这些晶格可以移动，那么只需要再旋转回来。
 
-![image-20220810084848954](.\surface-code\pic\phgate-1.png)
+<div align=center>
+<img width="550" src=".\surface-code\pic\phgate-1.png"/>
+</div>
+<div align=center>物理实现上晶格的旋转<br/></div>
 
-否则的话，采用下图的方法：先将一些data qubit和其拼接形成一个更大的planar code，把多余部分通过 $M_Z$ 去掉，最后用 $SWAP$ 把新得到的方向正确的planar code平移回原来的位置。
+否则的话，采用下图的方法：先将一些 data qubit 和其拼接形成一个更大的 planar code，把多余部分通过 $M_Z$ 去掉，最后用 $SWAP$ 把新得到的方向正确的 planar code 平移回原来的位置。
 
-![image-20220810085511834](.\surface-code\pic\phgate-2.png)
+<div align=center>
+<img width="600" src=".\surface-code\pic\phgate-2.png"/>
+</div>
+<div align=center>与晶格旋转等价的另一种实现方式<br/></div>
 
 planar code 和基于缺陷的 surface code 之间可以相互转化，我们前文中 surface code 的Hadamard gate 实现中正是利用了这一点，先将后者转化为前者，实现 Hadamard gate，然后转化回后者。
 
 **简化**
 
-下图展示了一个 $d=5$ 的planar code，可以对其简化来得到一个包含更少 data qubit 但 $d$ 不变的planar code。裁剪掉红色边框外的所有 data qubit 和 measure qubit，除了那些和边框上的 data qubit 有连接的 measure qubit。可以明显看出，新的planar code的距离没有改变。
+下图展示了一个 $d=5$ 的 planar code，可以对其简化来得到一个包含更少 data qubit 但 $d$ 不变的 planar code。裁剪掉红色边框外的所有 data qubit 和 measure qubit，除了那些和边框上的 data qubit 有连接的 measure qubit。可以明显看出，新的 planar code 的距离没有改变。
 
-![image-20220810090825086](.\surface-code\pic\symplify.png)
-
-
+<div align=center>
+<img width="800" src=".\surface-code\pic\symplify.png"/>
+</div>
+<div align=center>d=5 的 planar code 简化<br/></div>
 
 #### color code
 
-接下来，我们要换一种方式来叙述 surface code，这能帮我们更好地看出它与 color code 的联系。我们可以认为surface code可以由四价格点在某个闭合曲面（$g$-torus code）上的可以二着色的排布，因此我们可以将着色之后的面分为亮面和暗面，分别记做$P_L$和$P_D$，如下图所示：
+接下来，我们要换一种方式来叙述 surface code，这能帮我们更好地看出它与 color code 的联系。我们可以认为 surface code 可以由四价格点在某个闭合曲面（$g$-torus code）上的可以二着色的排布，因此我们可以将着色之后的面分为亮面和暗面，分别记做 $P_L$ 和 $P_D$，如下图所示：
 
-![image-20220810135209347](.\surface-code\pic\surface-code-new.png)
+<div align=center>
+<img width="300" src=".\surface-code\pic\surface-code-new.png"/>
+</div>
+<div align=center>color code 的标记方法<br/></div>
 
 有如下记号：
 $$
@@ -870,37 +925,53 @@ $$
 $$
 \{B_p^X| p \in P_D\}\cup\{B_p^Z| p\in P_L\}
 $$
-一条 $Z$-string 由一连串的格点表示，它在每个这些格点上都作用上 $Z$；$X$-string 也可以类似定义。任何的operator都可以表示为一条 $Z$-string 和一条 $X$-string 的乘积，不考虑相位。由相同类型的色块对应的生成元的乘积所产生的 $\sigma$-string 称为 **边界**，那些不是 **边界** 的 **闭合** 的 $\sigma$-string 构成了那些无法被发现的错误，即属于 $C(S)$，我们可以从中选取逻辑算子。
+一条 $Z$-string 由一连串的格点表示，它在每个这些格点上都作用上 $Z$；$X$-string 也可以类似定义。任何的 operator 都可以表示为一条 $Z$-string 和一条 $X$-string 的乘积，不考虑相位。由相同类型的色块对应的生成元的乘积所产生的 $\sigma$-string 称为 **边界**，那些不是 **边界** 的 **闭合** 的 $\sigma$-string 构成了那些无法被发现的错误，即属于 $C(S)$，我们可以从中选取逻辑算子。
 
 我们主要考虑不同编码的效率，考虑最早的 torus code，一个 $g$-torus 可以编码 $2g$ 个logical qubit，如下图所示，注意不同类型的 string 相交奇数次表示它们反交换，偶数次表示它们交换：
 
-![image-20220810141229414](.\surface-code\pic\surface-code-new-2.png)
+<div align=center>
+<img width="300" src=".\surface-code\pic\surface-code-new-2.png"/>
+</div>
+<div align=center>torus code<br/></div>
 
 color code 则是考虑由三价格点在某个表面上的可以三着色的排布，色块可以分为 $P_G, P_R, P_B$，它的生成元集合为：
 $$
 \{B_p^\sigma| \sigma = X, Z, p \in P\}
 $$
-这里的 string 定义除了类型（$X, Z$），还需要考虑颜色，比如说蓝色的 string 只能连接蓝色的色块，意味着它可以在蓝色色块中间穿过，而只能沿着其余两种颜色的色块的边沿。此外，关于 **边界** 、**闭合** 之类的讨论和之前类似。当然也可以直接考虑算符对于每个生成元的测量结果来直接推出logical qubit 的逻辑算子。
+这里的 string 定义除了类型（$X, Z$），还需要考虑颜色，比如说蓝色的 string 只能连接蓝色的色块，意味着它可以在蓝色色块中间穿过，而只能沿着其余两种颜色的色块的边沿。此外，关于 **边界** 、**闭合** 之类的讨论和之前类似。当然也可以直接考虑算符对于每个生成元的测量结果来直接推出 logical qubit 的逻辑算子。
 
-![image-20220810142418571](.\surface-code\pic\color-code-1.png)
+<div align=center>
+<img width="300" src=".\surface-code\pic\color-code-1.png"/>
+</div>
+<div align=center>color code 颜色示意图<br/></div>
 
 若是采用 color code，一个 $g$-torus 可以编码 $4g$ 个 logical qubit：
 
-![image-20220810142619130](.\surface-code\pic\color-code-2.png)
+<div align=center>
+<img width="300" src=".\surface-code\pic\color-code-2.png"/>
+</div>
+<div align=center>基于 color code 用 g-tortus 编码 4 个 qubit<br/></div>
 
-下面是一个实际的例子，展示了$d = 4$ 的情况下，普通的surface code 和 color code 在一个圆环上的排布，可以看到在前两个正规排布下 surface code 的 $C := \frac{n}{d^2}$ （纠错率）要大于 color code，但是编码的 logical qubit 数量却不如；(c)(d)分别展示了优化后的情形，此时 $d$ 不变，二者具有差不多的纠错率。
+下面是一个实际的例子，展示了$d = 4$ 的情况下，普通的 surface code 和 color code 在一个圆环上的排布，可以看到在前两个正规排布下 surface code 的 $C := \dfrac{n}{d^2}$ （纠错率）要大于 color code，但是编码的 logical qubit 数量却不如；(c)(d)分别展示了优化后的情形，此时 $d$ 不变，二者具有差不多的纠错率。
 
-![image-20220810144206680](.\surface-code\pic\contrast-1.png)
+<div align=center>
+<img width="300" src=".\surface-code\pic\contrast-1.png"/>
+</div>
+<div align=center>d=4 时，surface code 和 color code 的圆环排布<br/></div>
 
 我们刚刚讨论的都是闭合曲面，如果要得到 planar code，那么只需要不断地移除色块直到曲面可以被展开到平面即可，这样的定义就和之前相同了，为了使 string 的定义相容，可以假设产生的边界也表示一个色块。在 planar code 情况下，两种编码的逻辑算子如下图所示：
 
-![image-20220810145401532](.\surface-code\pic\color-code-3.png)
+<div align=center>
+<img width="300" src=".\surface-code\pic\color-code-3.png"/>
+</div>
+<div align=center>基于 planar code 两种编码的逻辑算子 (1)<br/></div>
 
-![image-20220810145434045](.\surface-code\pic\color-code-4.png)
-
+<div align=center>
+<img width="300" src=".\surface-code\pic\color-code-4.png"/>
+</div>
+<div align=center>基于 planar code 两种编码的逻辑算子 (2)<br/></div>
 
 ## 子系统编码理论
-
 
 ### 简介
 
@@ -1041,7 +1112,10 @@ $$
 2. $\mathcal{S}$ 上的算子满足所有全包括 $X$ 的行个数为偶数个，所有全包括 $Z$ 的列个数也为偶数个，交叉点同理，可参考图 $\mathcal{S}$；
 3. $\mathcal{L}$ 上的算子满足所有全包括 $X$ 的行个数为奇数个，所有全包括 $Z$ 的列个数也为奇数个，交叉点同理，可参考图 $\mathcal{L}$；
 
-<img src="./subsystem-code/lattice_graph.jpeg" style="zoom:25%;" />
+<div align=center>
+<img width="600" src="./subsystem-code/paper/lattice_graph.jpeg"/>
+</div>
+<div align=center><br/>晶格示意图</div>
 
 由于 **$\mathcal{S}$ 可交换**，可分解 $(\mathbb{C}^2)^{2^{n}}$ 希尔伯特空间为：
 $$
@@ -1137,17 +1211,17 @@ $$
 
 假设 $p_X=p_Z$，理论得到相应失败概率为
 $$
-p_{\text{fail}}=\left(\frac{2}{\pi \ln 2}\right)^{1 / 2} \exp \left(\frac{\ln ^{2} 2}{8}\right) p^{1 / 2} \exp \left(-\frac{\ln ^{2} 2}{8 p}+O(p)\right)
+p_{\text{fail}}=\left(\dfrac{2}{\pi \ln 2}\right)^{1 / 2} \exp \left(\dfrac{\ln ^{2} 2}{8}\right) p^{1 / 2} \exp \left(-\dfrac{\ln ^{2} 2}{8 p}+O(p)\right)
 $$
 相关数值计算表明，当失败概率小于 $0.01$ 时，需要 $p_X=p_Z<0.022$，这并不能带来更好的效果，但如果考虑有**偏向噪声**的情况，如 $p_X\ll p_Z$ ，此时通过 Bacon-Shor 编码的理论分析计算得到
 $$
 \ln (p_{\text{fail}})=-A(b) / p_{Z}-(0.5) \ln \left(1 / p_{Z}\right)+C(b)+O\left(p_{Z}\right.\  polylog \left.(b)\right)
 \\
-A(b)=\frac{1}{8}(W(\sqrt{b}))^{2}+O\left(b^{-1 / 2} \ln b\right)
+A(b)=\dfrac{1}{8}(W(\sqrt{b}))^{2}+O\left(b^{-1 / 2} \ln b\right)
 $$
 其中
 $$
-W(\sqrt{b})=\ln \sqrt{b}-\ln \ln \sqrt{b}+\frac{\ln \ln \sqrt{b}}{\ln \sqrt{b}}+O\left(\frac{\ln \ln \sqrt{b}}{\ln ^{2} \sqrt{b}}\right)
+W(\sqrt{b})=\ln \sqrt{b}-\ln \ln \sqrt{b}+\dfrac{\ln \ln \sqrt{b}}{\ln \sqrt{b}}+O\left(\dfrac{\ln \ln \sqrt{b}}{\ln ^{2} \sqrt{b}}\right)
 $$
 这与现代计算机容错率 $10^{-17}$ 对比，仅需要保证 $p_{Z}/p_{X}\approx 0.02$ 的条件，说明在噪声有偏向的特殊情形下，子系统编码具有一定的优越性。
 
