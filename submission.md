@@ -337,6 +337,7 @@ $$
 \left|x+C_{2}\right\rangle \equiv \dfrac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}|x+y\rangle
 $$
 
+其中，“ +” 为按比特的模 2 方式加。设 $x^{\prime}$ 为 $C_{1}$ 的一个元，使有 $x-x^{\prime} \in C_{2}$。那么，容易看到 $\left|x+C_{2}\right\rangle=\left|x^{\prime}+C_{2}\right\rangle$，因此状态 $\left|x+C_{2}\right\rangle$ 只依赖于 $x$ 所在的陪集 $C_{1} / C_{2}$，这同时解释了我们已用于 $\left|x+C_{2}\right\rangle$ 的陪集符号。进而，如果 $x$ 和 $x^{\prime}$ 属于 $C_{2}$ 的不同陪集，那么不存在 $y, y^{\prime} \in C_{2}$，使得 $x+y=x^{\prime}+y^{\prime}$，因而 $\left|x+C_{2}\right\rangle$ 和 $\left|x^{\prime}+C_{2}\right\rangle$ 为正交状态。量子码 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 就定义为由所有 $x \in C_{1}$ 的状态 $\left|x+C_{2}\right\rangle$ 所张成的向量空间。$C_{1}$ 中 $C_{2}$ 的陪集的数目为 $\left|C_{1}\right| /\left|C_{2}\right|$，所以 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 的维数为 $\left|C_{1}\right| /\left|C_{2}\right|=$ $2^{k_{1}-k_{2}}$，因此 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 是一个 $\left[n, k_{1}-k_{2}\right]$ 量子码。
 
 可以利用 $C_{1}$ 和 $C_{2}^{\perp}$ 的经典纠错性质来检测和纠正量子差错。事实上，通过分别利用 $C_{1}$ 和 $C_{2}^{\perp}$ 的纠错性质，有可能对 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 上最多 $t$ 个比特翻转差错和相位翻转差错进行纠错。设比特翻转差错由 $n$ 比特向量 $e_{1}$ 来描述，且在比特翻转出现的比特上为 1，在其他比特上为 0。相位翻转差错由 $n$ 比特向量 $e_{2}$ 来描述，且在相位翻转出现的比特上为 1，在其他位上为 0。如果 $\left|x+C_{2}\right\rangle$ 为原始状态，那么受污染后的状态为：
 $$
@@ -1243,3 +1244,4 @@ $$
 [7] P. Aliferis and A. W. Cross, *Subsystem Fault Tolerance with the BaconShor Code*, Phys. Rev. Lett. 98, 220502 (2007)
 
 [8] J. Napp and J. Preskill, *Optimal Bacon-Shor codes*, Quantum Info. Comput. 13, 490 (2013)
+
