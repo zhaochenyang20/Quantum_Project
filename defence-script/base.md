@@ -89,3 +89,15 @@ $$
 \left|x+C_{2}\right\rangle \equiv \dfrac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}|x+y\rangle
 $$
 其中，“ +” 为按比特的模 2 方式加。设 $x^{\prime}$ 为 $C_{1}$ 的一个元，使有 $x-x^{\prime} \in C_{2}$。那么，容易看到 $\left|x+C_{2}\right\rangle=\left|x^{\prime}+C_{2}\right\rangle$，因此状态 $\left|x+C_{2}\right\rangle$ 只依赖于 $x$ 所在的陪集 $C_{1} / C_{2}$，这同时解释了我们已用于 $\left|x+C_{2}\right\rangle$ 的陪集符号。进而，如果 $x$ 和 $x^{\prime}$ 属于 $C_{2}$ 的不同陪集，那么不存在 $y, y^{\prime} \in C_{2}$，使得 $x+y=x^{\prime}+y^{\prime}$，因而 $\left|x+C_{2}\right\rangle$ 和 $\left|x^{\prime}+C_{2}\right\rangle$ 为正交状态。量子码  $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 就定义为由所有 $x \in C_{1}$ 的状态 $\left|x+C_{2}\right\rangle$ 所张成的向量空间。$C_{1}$ 中 $C_{2}$ 的陪集的数目为 $\left|C_{1}\right| /\left|C_{2}\right|$，所以 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 的维数为 $\left|C_{1}\right| /\left|C_{2}\right|=$ $2^{k_{1}-k_{2}}$，因此 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 是一个 $\left[n, k_{1}-k_{2}\right]$ 量子码。
+
+# 稳定子码
+
+设 $S$ 为 $G_{n}$ 的一个子群，定义 $V_{S}$ 为 由 $S$ 的每个元所固定的 $n$ 量子比特状态的集合。$V_{S}$ 为由 $S$ 所稳定的向量空间，$S$ 被称为空间 $V_{S}$ 的稳定子，因为 $V_{S}$ 的每个元为在 $S$ 中元的作用下是稳定的。
+
+如果 $G$ 的每个元都可被写为序列 $g_{1}, \cdots, g_{l}$ 的元的一个乘积，群 $G$ 中的一组元 $g_{1}, \cdots, g_{l}$ 被说成为来生成这个群 $G$，写为 $G=$ $\left\langle g_{1}, \cdots, g_{l}\right\rangle$。在例子中，由于 $Z_{1} Z_{3}=\left(Z_{1} Z_{2}\right)\left(Z_{2} Z_{3}\right)$ 和 $I=\left(Z_{1} Z_{2}\right)^{2}$，所以 $S=\left\langle Z_{1} Z_{2},Z_{2} Z_{3}\right\rangle$。事实上，大小为 $|G|$ 的一个 群 $G$ 具有最多 $\log (|G|)$ 个的一组生成元。进而，为看清一个特定的向量可用群 $S$ 来稳定，我们只需要检验向量可用生成元稳定。因为它自动就会由生成元的乘积稳定。
+
+并非 Pauli 群的任一子群 $S$ 都可被用作非平凡向量空间的稳定子。举例来说，考虑由 $(\pm I, \pm X)$ 组成的 $G_{1}$ 的子群，显然 $(-I)|\psi\rangle=|\psi\rangle$ 只有解 $|\psi\rangle=0$。因而， $(\pm I, \pm X)$ 是平凡向量空间的稳定子。为使 $S$ 稳定一个非平凡向量空间 $V_{S}, S$ 必须满足 两个必要条件：
+
+1. S 的元可对易；
+2. $-I$ 不是 $S$ 的一个元。
+
