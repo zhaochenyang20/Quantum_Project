@@ -159,11 +159,12 @@ Shor 码能对任一量子比特上的相位翻转差错和比特翻转差错进
 
 我们现以类似的方式来处理量子比特上的相位翻转。设相位翻转出现在第一量子比特上。这个相位翻转使第一量子比特块中的符号翻转，变 $(|000\rangle+|111\rangle)$ 为 $(|000\rangle-|111\rangle)$，反之亦然。事实上，前三个量子比特中任意一个上的相位翻转都具有这种影响，我们所描述的纠错方法对这三种可能差错中的任意一种都能奏效。
 
-差错症状测量开始于比较第一个和第二个三量子比特块的符号，就像对相位翻转码的差错症状测量开始于比较第一和第二量子比特一样。举例来说，(| 000>一 $|111\rangle)(|000\rangle \cdots|111\rangle)$ 在两个量子比特块中具有相同符号 $(-)$，而 $(|000\rangle-$ $|111\rangle)(|000\rangle+|111\rangle)$ 具有不同符号。当相位翻转出现在前三个量子比特中任意一个上时，我们发现第一和第二量子比特块的符号为不同。差错症状测量的第二阶段和最后阶段是来比较第二和第三量子比特块的符号。我们发现这些符号为相同，并得到结论在第一个三量子比特块中必有翻转。通过翻转第一个三量子比特块中的符号，我们就会将其恢复到它的原来的值。以类似的方式，我们还可恢复 9 个量子比特中任意一个上的相位翻转。
+差错症状测量开始于比较第一个和第二个三量子比特块的符号，就像对相位翻转码的差错症状测量开始于比较第一和第二量子比特一样。举例来说， $(| 000\rangle \cdots|111\rangle)(|000\rangle \cdots|111\rangle)$ 在两个量子比特块中具有相同符号 $(-)$，而 $(|000\rangle-$ $|111\rangle)(|000\rangle+|111\rangle)$ 具有不同符号。当相位翻转出现在前三个量子比特中任意一个上时，我们发现第一和第二量子比特块的符号为不同。差错症状测量的第二阶段和最后阶段是来比较第二和第三量子比特块的符号。我们发现这些符号为相同，并得到结论在第一个三量子比特块中必有翻转。通过翻转第一个三量子比特块中的符号，我们就会将其恢复到它的原来的值。以类似的方式，我们还可恢复 9 个量子比特中任意一个上的相位翻转。
 
 设比特翻转和相位翻转差错两者同时出现在第一量子比特上，也即算子 $Z_{1} X_{1}$ 作用于那个量子比特上。那么，容易看出，检测比特翻转差错的方法将可来检测第一量子比特上的比特翻转并对其纠正，检测相位翻转差错的方法将可来检测第一个三量子比特块上的相位翻转并对其纠正。因此，Shor 码也能来纠正单量子比特上比特翻转和相位翻转的组合差错。
 
 事实上，Shor 码对单量子比特上的保护要比比特翻转和相位翻转差错多得多一一我们现来证明，Shor 码可对完全任意的差错进行保护，只要规定它们仅影响一个单量子比特。
+
 为简化分析，设一个任意类型的噪声只出现在第一量子比特上。我们用保迹量子运算 $\varepsilon$ 来描述噪声，分析纠错的最为方便的做法是将 $\varepsilon$ 展开为具有运算元 $\left\{E_{i}\right\}$ 的算子和表示。设噪声作用前编码后的量子比特状态为： $|\psi\rangle=\alpha\left|0_{\mathrm{L}}\right\rangle+\beta\left|1_{\mathrm{L}}\right\rangle$，则噪声作用以后这个状态为 $\varepsilon(|\psi\rangle\langle\psi|)=\displaystyle \displaystyle \sum_{i} E_{i}|\psi\rangle\langle\psi| E_{i}^{\dagger}$。为分析纠错的作用，最容易的做法是把纠错作用集中到这个和式的一个单项上，比如说 $E_{i}|\psi\rangle\langle\psi| E_{i}^{\dagger}$。作为第一量子比特上的一个单独的算子 $E_{i}$，可以被展开为单位阵 $I$ 、比特翻转 $X_{1}$ 、相位翻转 $Z_{1}$ 以及组合位与相位翻转 $X_{1} Z_{1}$ 的一个线性组合：
 $$
 E_{i}=e_{i 0} I+e_{i 1} X_{1}+e_{i 2} Z_{1}+e_{i 3} X_{1} Z_{1}
@@ -174,11 +175,11 @@ $$
 
 ## 量子纠错的理论
 
-量子纠错理论的基本思想自然地推广了由 Shor 码引发的思想，量子状态通过酉运算被编码为量子纠错码，其形式定义为某个较大 Hilbert 空间中的一个子空 间 $C$。为方便起见，我们采用符号 $P$ 表示到码空间 $C$ 上的投影算子；且对三量子比特比特翻转码，$P=|000\rangle\langle 000|+| 111\rangle\langle 111|$。在编码以后，这个码会受到噪声的影响，紧接着执行差错症状测量以检测所出现的差错类型。一旦差错症状确定，恢复运算就会执行，以使量子系统回到这个码的原来状态。
+量子纠错理论的基本思想自然地推广了由 Shor 码引发的思想，量子状态通过酉运算被编码为量子纠错码，其形式定义为某个较大 Hilbert 空间中的一个子空间 $C$。为方便起见，我们采用符号 $P$ 表示到码空间 $C$ 上的投影算子；且对三量子比特比特翻转码，$P=|000\rangle\langle 000|+| 111\rangle\langle 111|$。在编码以后，这个码会受到噪声的影响，紧接着执行差错症状测量以检测所出现的差错类型。一旦差错症状确定，恢复运算就会执行，以使量子系统回到这个码的原来状态。
 
 不同的差错症状对应于整个 Hilbert 空间中保形的和正交的子空间，这些子空间必是正交的，否则它们就不能被差错症状测量可靠地区分。进而，由于到不同子空间的差错映射必将正交码字映射到正交状态，因此这些不同的子空间必为原来码空间的保形版本，这样就能使其从差错中恢复。这个直观的图像基本上就是下面所要讨论的量子纠错条件的要旨。
 
-我们仅只作两个很宽泛的假定：噪声由量子运算 $\varepsilon$ 所描述，整个纠错方法由我们称之为纠错运算的一个保迹量子运算 $\mathscr{R}$ 承担。这个纠错运算把我们上面称为差错检测和恢复的两个步骤合并，为确保纠错是成功的，我们要求对任何状态 $\rho$，其支集位于码空间 $C$ 中，有
+我们仅只作两个很宽泛的假定：噪声由量子运算 $\varepsilon$ 所描述，整个纠错方法由我们称之为纠错运算的一个保迹量子运算 $\mathscr{R}$ 承担。这个纠错运算把我们上面称为差错检测和恢复的两个步骤合并，为确保纠错是成功的，我们要求对任何状态 $\rho$，其支集位于码空间 $C$ 中，有：
 
 $$
 (\mathscr{R} \circ \varepsilon)(\rho) \propto \rho
@@ -188,7 +189,7 @@ $$
 
 ### 量子纠错条件
 
-令 $C$ 为一个量子码，令 $P$ 为到 $C$ 的投影算子。设 $\varepsilon$ 为具有运算元 $\left\{E_{i}\right\}$ 的量子运算。则纠正 $C$ 上 $\varepsilon$ 的纠错运算 $R$ 存在的充分必要条件为，对某个复数 Hermite 矩阵 $\alpha$ 成立：
+令 $C$ 为一个量子码，令 $P$ 为到 $C$ 的投影算子。设 $\varepsilon$ 为具有运算元 $\left\{E_{i}\right\}$ 的量子运算。则纠正 $C$ 上 $\varepsilon$ 的纠错运算 $R$ 存在的充分必要条件为，对某个复数  Hermite 矩阵 $\alpha$ 成立：
 $$
 P E_{i}^{\dagger} E_{j} P=\alpha_{i j} P
 $$
@@ -335,7 +336,8 @@ $$
 $$
 \left|x+C_{2}\right\rangle \equiv \dfrac{1}{\sqrt{\left|C_{2}\right|}} \sum_{y \in C_{2}}|x+y\rangle
 $$
-其中，“ +” 为按比特的模 2 方式加。设 $x^{\prime}$ 为 $C_{1}$ 的一个元，使有 $x-x^{\prime} \in C_{2}$。那么，容易看到 $\left|x+C_{2}\right\rangle=\left|x^{\prime}+C_{2}\right\rangle$，因此状态 $\left|x+C_{2}\right\rangle$ 只依赖于 $x$ 所在的陪集 $C_{1} / C_{2}$，这同时解释了我们已用于 $\left|x+C_{2}\right\rangle$ 的陪集符号。进而，如果 $x$ 和 $x^{\prime}$ 属于 $C_{2}$ 的不同陪集，那么不存在 $y, y^{\prime} \in C_{2}$，使得 $x+y=x^{\prime}+y^{\prime}$，因而 $\left|x+C_{2}\right\rangle$ 和 $\left|x^{\prime}+C_{2}\right\rangle$ 为正交状态。量子码  $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 就定义为由所有 $x \in C_{1}$ 的状态 $\left|x+C_{2}\right\rangle$ 所张成的向量空间。$C_{1}$ 中 $C_{2}$ 的陪集的数目为 $\left|C_{1}\right| /\left|C_{2}\right|$，所以 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 的维数为 $\left|C_{1}\right| /\left|C_{2}\right|=$ $2^{k_{1}-k_{2}}$，因此 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 是一个 $\left[n, k_{1}-k_{2}\right]$ 量子码。
+
+其中，“ +” 为按比特的模 2 方式加。设 $x^{\prime}$ 为 $C_{1}$ 的一个元，使有 $x-x^{\prime} \in C_{2}$。那么，容易看到 $\left|x+C_{2}\right\rangle=\left|x^{\prime}+C_{2}\right\rangle$，因此状态 $\left|x+C_{2}\right\rangle$ 只依赖于 $x$ 所在的陪集 $C_{1} / C_{2}$，这同时解释了我们已用于 $\left|x+C_{2}\right\rangle$ 的陪集符号。进而，如果 $x$ 和 $x^{\prime}$ 属于 $C_{2}$ 的不同陪集，那么不存在 $y, y^{\prime} \in C_{2}$，使得 $x+y=x^{\prime}+y^{\prime}$，因而 $\left|x+C_{2}\right\rangle$ 和 $\left|x^{\prime}+C_{2}\right\rangle$ 为正交状态。量子码 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 就定义为由所有 $x \in C_{1}$ 的状态 $\left|x+C_{2}\right\rangle$ 所张成的向量空间。$C_{1}$ 中 $C_{2}$ 的陪集的数目为 $\left|C_{1}\right| /\left|C_{2}\right|$，所以 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 的维数为 $\left|C_{1}\right| /\left|C_{2}\right|=$ $2^{k_{1}-k_{2}}$，因此 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 是一个 $\left[n, k_{1}-k_{2}\right]$ 量子码。
 
 可以利用 $C_{1}$ 和 $C_{2}^{\perp}$ 的经典纠错性质来检测和纠正量子差错。事实上，通过分别利用 $C_{1}$ 和 $C_{2}^{\perp}$ 的纠错性质，有可能对 $\operatorname{CSS}\left(C_{1}, C_{2}\right)$ 上最多 $t$ 个比特翻转差错和相位翻转差错进行纠错。设比特翻转差错由 $n$ 比特向量 $e_{1}$ 来描述，且在比特翻转出现的比特上为 1，在其他比特上为 0。相位翻转差错由 $n$ 比特向量 $e_{2}$ 来描述，且在相位翻转出现的比特上为 1，在其他位上为 0。如果 $\left|x+C_{2}\right\rangle$ 为原始状态，那么受污染后的状态为：
 $$
@@ -729,7 +731,7 @@ $$
 
 ### Topological braid transformation
 
-#### 单个qubit
+#### 单个 qubit
 
 有了上面定义的移动多个 qubit 的方法后，我们可以通过移动两次，来让一个 qubit 绕一个圈：
 
@@ -1224,3 +1226,22 @@ $$
 W(\sqrt{b})=\ln \sqrt{b}-\ln \ln \sqrt{b}+\dfrac{\ln \ln \sqrt{b}}{\ln \sqrt{b}}+O\left(\dfrac{\ln \ln \sqrt{b}}{\ln ^{2} \sqrt{b}}\right)
 $$
 这与现代计算机容错率 $10^{-17}$ 对比，仅需要保证 $p_{Z}/p_{X}\approx 0.02$ 的条件，说明在噪声有偏向的特殊情形下，子系统编码具有一定的优越性。
+
+## **参考文献**
+
+[1] Nielsen, M.A and Chuang, I. L. *Quantum Computation and Quantum Information: 10th Anniversary Edition*, Cambridge University Press, (2010)
+
+[2] A. G. Fowler, et al., *Surface codes: Towards practical large-scale quantum computation*, Phys. Rev. A 86, 032324 (2012)
+
+[3] C. Horsman, et al., *Surface code quantum computing by lattice surgery*, New J. Phys. 14123011 (2012)
+
+[4] H. Bombin and M. A. Martin-Delgado, *Optimal resources for topological two-dimensional stabilizer codes: Comparative study*, Phys. Rev. A 76, 012305 (2007)
+
+[5] Y. Tomita and K. M. Svore, *Low-distance surface codes under realistic quantum noise*, Phys. Rev. A 90, 062320 (2014)
+
+[6] D. Bacon, *Operator quantum error-correcting subsystems for self-correcting quantum memories*, Phys. Rev. A 73, 012340 (2006)
+
+[7] P. Aliferis and A. W. Cross, *Subsystem Fault Tolerance with the BaconShor Code*, Phys. Rev. Lett. 98, 220502 (2007)
+
+[8] J. Napp and J. Preskill, *Optimal Bacon-Shor codes*, Quantum Info. Comput. 13, 490 (2013)
+
